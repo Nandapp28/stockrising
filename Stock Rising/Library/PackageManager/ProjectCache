@@ -6,8 +6,8 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638628294006246765
-    m_Hash: 3219194938
+      ticks: 638645769157135348
+    m_Hash: 3190872083
   m_LockFileStatus:
     m_FilePath: D:/POLTEK Batam/Tugas PBL/Semester 5/Workspace/stockrising/Stock
       Rising/Packages/packages-lock.json
@@ -15,8 +15,8 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638628294006365951
-    m_Hash: 3299463117
+      ticks: 638645769157145345
+    m_Hash: 854151047
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -121,9 +121,11 @@ m_ResolvedPackages:
     - 2.4.3
     - 2.4.4
     - 2.5.1
+    - 2.5.2
     compatible:
     - 2.4.4
     - 2.5.1
+    - 2.5.2
     recommended: 2.4.4
     deprecated: []
   dependencies: []
