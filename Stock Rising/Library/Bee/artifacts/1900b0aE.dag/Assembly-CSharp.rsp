@@ -359,6 +359,8 @@
 "Assets/Scripts/Finite State Machine/SecondSemesterState.cs"
 "Assets/Scripts/Finite State Machine/SemesterBaseState.cs"
 "Assets/Scripts/Finite State Machine/SemesterStateManager.cs"
+"Assets/Trial/Scripts/GameManager.cs"
+"Assets/Trial/Scripts/PlayerController.cs"
 -langversion:9.0
 /deterministic
 /optimize+
