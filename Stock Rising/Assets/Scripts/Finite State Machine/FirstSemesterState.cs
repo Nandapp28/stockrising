@@ -1,23 +1,26 @@
+using TMPro;
 using UnityEngine;
 
 public class FirstSemesterState : SemesterBaseState
 {
-    float timeCountDown = 5.0f;
+    float timeCountDown = 2.0f;
+
     public override void EnterState(SemesterStateManager semester)
     {
-        Debug.Log("Halo dari Enter:State Semester 1");
+        semester.semester1Title.gameObject.SetActive(true);
+        semester.semesterCount += 1;
     }
 
     public override void UpdateState(SemesterStateManager semester)
     {
-        Debug.Log("Halo dari Update:State Semester 1");
         if (timeCountDown >= 0)
         {
             timeCountDown -= Time.deltaTime;
         }
         else
         {
-            semester.SwitchState(semester.secondSemester);
+            semester.semester1Title.gameObject.SetActive(false);
+            semester.SwitchState(semester.biddingPhase);
         }
     }
 
@@ -25,4 +28,6 @@ public class FirstSemesterState : SemesterBaseState
     {
 
     }
+
+
 }

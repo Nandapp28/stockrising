@@ -6,22 +6,31 @@ public class DiceScript : MonoBehaviour
 {
     public Transform[] faceDetectors;
     public Rigidbody rb;
+    public bool isRolling = false; // trigger button
+    public int indexResult = 0;
 
     void Start()
     {
-        SetInitialState();
+        //SetInitialState();
     }
 
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Mouse0))
-        //{
-        //    transform.position = new Vector3(0, 2, 0);
-        //    SetInitialState();
-        //}
-        int indexResult = FindFaceResult();
-        indexResult += 1;
-        Debug.Log("Hasil DADU: " + indexResult);
+        if (isRolling == true)
+        {
+            transform.position = new Vector3(0, 2.5f, 0);
+            indexResult = 0;
+            SetInitialState();
+
+            isRolling = false;
+        }
+
+        if (CheckObjectHasStopped())
+        {
+            indexResult = FindFaceResult();
+            indexResult += 1;
+            //Debug.Log("Hasil DADU: " + indexResult);
+        }
     }
 
     private void SetInitialState()
@@ -36,9 +45,9 @@ public class DiceScript : MonoBehaviour
         z = Random.Range(0, 5);
         Vector3 force = new Vector3(0, -y, 0);
 
-        x = Random.Range(0, 25);
-        y = Random.Range(0, 25);
-        z = Random.Range(0, 25);
+        x = Random.Range(0, 10);
+        y = Random.Range(0, 10);
+        z = Random.Range(0, 10);
         Vector3 torque = new Vector3(x, y, z);
 
         transform.rotation = rotation;
