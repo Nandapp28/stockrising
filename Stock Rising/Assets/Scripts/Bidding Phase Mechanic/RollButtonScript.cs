@@ -4,18 +4,14 @@ using UnityEngine;
 
 public class RollButtonScript : MonoBehaviour
 {
-    public Material red, black;
-    bool redB;
-    void OnMouseDown()
+    public Dice1Script dice1Script;
+    public Dice2Script dice2Script;
+    public bool isClicked = false;
+
+    public void ButtonClicked()
     {
-        //Debug.Log("Tombol Roll Dice ditekan");
-        redB = !redB;
-        if (red)
-        {
-            this.GetComponent<Renderer>().material = black;
-        } else
-        {
-            this.GetComponent<Renderer>().material = red;
-        }
+        isClicked = true;
+        dice1Script.isRolling = true;
+        dice2Script.isRolling = true;
     }
 }
