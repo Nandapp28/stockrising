@@ -6,7 +6,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638645769157135348
+      ticks: 638668979083822824
     m_Hash: 3190872083
   m_LockFileStatus:
     m_FilePath: D:/POLTEK Batam/Tugas PBL/Semester 5/Workspace/stockrising/Stock
@@ -15,7 +15,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638645769157145345
+      ticks: 638668979083832639
     m_Hash: 854151047
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
@@ -762,9 +762,11 @@ m_ResolvedPackages:
     - 1.9.1
     - 1.9.2
     - 1.9.4
+    - 1.9.5
     compatible:
     - 1.9.4
-    recommended: 1.9.4
+    - 1.9.5
+    recommended: 1.9.5
     deprecated:
     - 1.8.0-pre.1
   dependencies:
@@ -2931,9 +2933,11 @@ m_ResolvedPackages:
     - 3.0.27
     - 3.0.28
     - 3.0.31
+    - 3.0.34
     compatible:
     - 3.0.31
-    recommended: 3.0.31
+    - 3.0.34
+    recommended: 3.0.34
     deprecated: []
   dependencies:
   - name: com.unity.ext.nunit
