@@ -5,7 +5,9 @@ using static BiddingPhaseState;
 
 public class BiddingPhaseState : SemesterBaseState
 {
-    float timeCountDown = 2.0f;
+    float timeEnterCountDown = 2.0f;
+    float timeSortCountDown = 2.0f;
+
     PlayerScript currentPlayerScript;
     List<PlayerOrderNum> playerOrderNums = new List<PlayerOrderNum>();
 
@@ -73,10 +75,19 @@ public class BiddingPhaseState : SemesterBaseState
                 CheckDuplicates(semester);
                 playerOrderNums = playerOrderNums.OrderByDescending(pair => pair.orderNum).ToList();
 
-                for (int i = 0; i < playerOrderNums.Count; i++)
+                // setelah player terakhir lempar dadu, kasih jeda 2 detik
+                if (timeSortCountDown >= 0)
                 {
-                    PlayerScript playerScript = playerOrderNums[i].playerGameObject.GetComponent<PlayerScript>();
-                    playerScript.playerOrder = i + 1;
+                    timeSortCountDown -= Time.deltaTime;
+                }
+                else
+                {
+                    // set urutan player
+                    for (int i = 0; i < playerOrderNums.Count; i++)
+                    {
+                        PlayerScript playerScript = playerOrderNums[i].playerGameObject.GetComponent<PlayerScript>();
+                        playerScript.playerOrder = i + 1;
+                    }
                 }
                 break;
 
@@ -85,9 +96,9 @@ public class BiddingPhaseState : SemesterBaseState
 
     void SetInitialize(SemesterStateManager semester)
     {
-        if (timeCountDown >= 0)
+        if (timeEnterCountDown >= 0)
         {
-            timeCountDown -= Time.deltaTime;
+            timeEnterCountDown -= Time.deltaTime;
         }
         else
         {

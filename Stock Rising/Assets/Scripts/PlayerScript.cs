@@ -19,7 +19,7 @@ public class PlayerScript : MonoBehaviour
             nameText = tmpNameTransform.GetComponent<TextMeshProUGUI>();
         }
 
-        Transform tmpOrderNumTransform = transform.Find("Order Number");
+        Transform tmpOrderNumTransform = transform.Find("Player Order Number");
         if (tmpOrderNumTransform != null )
         {
             orderNumberText = tmpOrderNumTransform.GetComponent<TextMeshProUGUI>();

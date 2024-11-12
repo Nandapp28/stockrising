@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/ATS_Stock Rising.unity
+- path: Assets/Scenes/Stock Rising PvsCoP.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
