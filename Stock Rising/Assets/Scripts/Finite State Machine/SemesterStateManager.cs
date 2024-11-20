@@ -10,31 +10,36 @@ public enum GameState { Player1Turn, Player2Turn, Player3Turn, PlayersStop };
 public class SemesterStateManager : MonoBehaviour
 {
     public SemesterBaseState currentState;
-    public float semesterCount = 0;
 
+    [Header("Game Manager")]
+    public float semesterCount = 0;
+    public int phaseCount = 0;
+    public Image phaseTitleParent;
     public GameState playerState;
-    public TextMeshProUGUI player1OrderText;
-    public TextMeshProUGUI player2OrderText;
-    public TextMeshProUGUI player3OrderText;
 
     // Semester 1
+    [Header("Semester 1")]
     public FirstSemesterState firstSemester = new FirstSemesterState();
     public TextMeshProUGUI semester1Title;
 
+    // Semester 2
+    [Header("Semester 2")]
+    public SecondSemesterState secondSemester = new SecondSemesterState();
+
     // Bidding Phase
+    [Header("Bidding Phase")]
     public BiddingPhaseState biddingPhase = new BiddingPhaseState();
     public TextMeshProUGUI biddingTitle;
     public GameObject dices; // untuk aktifin dan non-aktifin parent dari dice-dice
     public Button rollDiceButton; // untuk aktifin dan non-aktifin Button Roll
     public GameObject[] players;
     public DiceManagerScript diceManagerScript;
+
+    [Header("Action Phase")]
+    public ActionPhaseState actionPhase = new ActionPhaseState();
+
     //debug
     public BPPlayersStopStateDebug bPlayersStopStateDebug;
-
-    // Semester 2
-    public SecondSemesterState secondSemester = new SecondSemesterState();
-
-
 
     void Start()
     {

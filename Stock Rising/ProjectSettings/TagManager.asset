@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - PhaseTitle
+  - Action Card
   layers:
   - Default
   - TransparentFX
