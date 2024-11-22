@@ -119,6 +119,8 @@ public class BiddingPhaseState : SemesterBaseState
         else
         {
             semester.phaseTitleParent.gameObject.SetActive(false);
+
+            // objek Bidding Phase
             semester.dices.SetActive(true);
             semester.rollDiceButton.gameObject.SetActive(true);
         }

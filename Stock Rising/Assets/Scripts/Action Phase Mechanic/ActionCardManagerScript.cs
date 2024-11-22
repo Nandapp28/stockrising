@@ -10,15 +10,29 @@ public class ActionCardManager : MonoBehaviour
     void Start()
     {
         actionCards = GameObject.FindGameObjectsWithTag("Action Card");
+        if (actionCards.Length != 0)
+        {
+            RandomizeActionCard();
+        } else
+        {
+            Debug.Log("Action Card Object tidak terdeteksi");
+        }
     }
 
     void RandomizeActionCard()
     {
         foreach (GameObject card in actionCards)
         {
-            Material cardMat = card.GetComponent<Material>();
-            int textureIndex = Random.Range(0, actionCardTextures.Length);
-            cardMat.mainTexture = actionCardTextures[textureIndex];
+            // memilih texture
+            int randomIndex = Random.Range(0, actionCardTextures.Length);
+            Texture selectedTexture = actionCardTextures[randomIndex];
+
+            // mengambil komponen material dari kartu
+            Renderer cardRenderer = card.GetComponent<Renderer>();
+            if (cardRenderer != null)
+            {
+                cardRenderer.material.mainTexture = selectedTexture;
+            }
         }
     }
 

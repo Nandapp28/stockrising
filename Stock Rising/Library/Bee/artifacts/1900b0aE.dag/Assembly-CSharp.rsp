@@ -369,6 +369,7 @@
 "Assets/Scripts/Finite State Machine/SemesterStateManager.cs"
 "Assets/Scripts/PhaseTitleScript.cs"
 "Assets/Scripts/PlayerScript.cs"
+"Assets/Scripts/TransparantBackgroundScript.cs"
 "Assets/Trial/GameManager2.cs"
 "Assets/Trial/PlayerTurnBasedM1/Scripts/GameManager.cs"
 "Assets/Trial/PlayerTurnBasedM1/Scripts/PlayerController.cs"

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PhaseTitle
   - Action Card
+  - Camera Middle Point
   layers:
   - Default
   - TransparentFX

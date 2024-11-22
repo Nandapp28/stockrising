@@ -17,10 +17,14 @@ public class SemesterStateManager : MonoBehaviour
     public Image phaseTitleParent;
     public GameState playerState;
 
+    public Camera mainCamera;
+    public GameObject cameraPost1;
+    public GameObject cameraPost2;
+    public GameObject transparantBgObj;
+
     // Semester 1
     [Header("Semester 1")]
     public FirstSemesterState firstSemester = new FirstSemesterState();
-    public TextMeshProUGUI semester1Title;
 
     // Semester 2
     [Header("Semester 2")]
@@ -29,14 +33,16 @@ public class SemesterStateManager : MonoBehaviour
     // Bidding Phase
     [Header("Bidding Phase")]
     public BiddingPhaseState biddingPhase = new BiddingPhaseState();
-    public TextMeshProUGUI biddingTitle;
     public GameObject dices; // untuk aktifin dan non-aktifin parent dari dice-dice
     public Button rollDiceButton; // untuk aktifin dan non-aktifin Button Roll
     public GameObject[] players;
     public DiceManagerScript diceManagerScript;
 
+    // Action Phase
     [Header("Action Phase")]
     public ActionPhaseState actionPhase = new ActionPhaseState();
+    public GameObject actionCardsObj;
+    public GameObject actionCardManagerObj;
 
     //debug
     public BPPlayersStopStateDebug bPlayersStopStateDebug;
