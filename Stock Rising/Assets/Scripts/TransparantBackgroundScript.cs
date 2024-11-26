@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TransparantBackgroundScript : MonoBehaviour
 {
-    float fadeDuration = 2.0f;
+    float fadeDuration = 1.0f;
     private Material backgroundMaterial;
 
     void Awake()

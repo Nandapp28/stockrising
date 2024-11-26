@@ -6,6 +6,9 @@ public class ActionCardManager : MonoBehaviour
 {
     public Texture[] actionCardTextures;
     GameObject[] actionCards;
+
+    public GameObject transparantBg2nd;
+    public bool cardTaken = false;
     
     void Start()
     {
@@ -38,6 +41,12 @@ public class ActionCardManager : MonoBehaviour
 
     void Update()
     {
-        
+        if (cardTaken)
+        {
+            transparantBg2nd.SetActive(true);
+        } else
+        {
+            transparantBg2nd.SetActive(false);
+        }
     }
 }
