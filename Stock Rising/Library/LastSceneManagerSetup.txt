@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/ATS_Stock Rising.unity
+- path: Assets/Scenes/3D Artist_Bella.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
