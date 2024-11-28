@@ -8,7 +8,10 @@ public class ActionCardManager : MonoBehaviour
     GameObject[] actionCards;
 
     public GameObject transparantBg2nd;
+    public GameObject actionButtons;
+
     public bool cardTaken = false;
+    public GameObject cardTakenObj;
     
     void Start()
     {
@@ -44,9 +47,11 @@ public class ActionCardManager : MonoBehaviour
         if (cardTaken)
         {
             transparantBg2nd.SetActive(true);
+            actionButtons.SetActive(true);
         } else
         {
             transparantBg2nd.SetActive(false);
+            actionButtons.SetActive(false);
         }
     }
 }

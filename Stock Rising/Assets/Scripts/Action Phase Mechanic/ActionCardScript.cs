@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[DisallowMultipleComponent]
 public class ActionCardScript : MonoBehaviour
 {
     public Material cardMaterial;
@@ -33,6 +32,7 @@ public class ActionCardScript : MonoBehaviour
             Debug.Log("Camera Middle Point Detected");
             isTaked = !isTaked;
             actionCardManager.cardTaken = !actionCardManager.cardTaken;
+            actionCardManager.cardTakenObj = gameObject;
 
         } else
         {

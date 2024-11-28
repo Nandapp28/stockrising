@@ -21,6 +21,19 @@ public class ActionPhaseState : SemesterBaseState
     public override void UpdateState(SemesterStateManager semester)
     {
         SetInitialize(semester);
+        switch (semester.playerState)
+        {
+            case GameState.Player1Turn:
+                Debug.Log("Player 1's Turn");
+
+                break;
+            case GameState.Player2Turn:
+                Debug.Log("Player 2's Turn");
+                break;
+            case GameState.Player3Turn:
+                Debug.Log("Player 3's Turn");
+                break;
+        }
     }
 
     void SetInitialize(SemesterStateManager semester)

@@ -22,6 +22,8 @@ public class SemesterStateManager : MonoBehaviour
     public GameObject cameraPost2;
     public GameObject transparantBgObj;
 
+    public GameObject[] players;
+
     // Semester 1
     [Header("Semester 1")]
     public FirstSemesterState firstSemester = new FirstSemesterState();
@@ -35,7 +37,6 @@ public class SemesterStateManager : MonoBehaviour
     public BiddingPhaseState biddingPhase = new BiddingPhaseState();
     public GameObject dices; // untuk aktifin dan non-aktifin parent dari dice-dice
     public Button rollDiceButton; // untuk aktifin dan non-aktifin Button Roll
-    public GameObject[] players;
     public DiceManagerScript diceManagerScript;
 
     // Action Phase
