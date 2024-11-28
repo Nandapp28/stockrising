@@ -74,7 +74,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 100
+  controlID: 98
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -433,7 +433,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Objects
+    - Assets/Objects/Miniatures/Mining Sector
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -441,15 +441,15 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 74
   m_LastFolders:
-  - Assets/Objects
+  - Assets/Objects/Miniatures/Mining Sector
   m_LastFoldersGridSize: 74
   m_LastProjectPath: C:\Users\user\Documents\GitHub\stockrising\Stock Rising
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: a05b0000
-    m_LastClickedID: 23456
+    scrollPos: {x: 0, y: 41}
+    m_SelectedIDs: f65b0000
+    m_LastClickedID: 23542
     m_ExpandedIDs: 000000009c5b00009e5b0000a05b0000a25b0000a45b0000a65b0000b85b000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -620,7 +620,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: e6f5ffff4cf6ffffb2f6ffff30fbffff
+      m_ExpandedIDs: 30fbffff005a0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1013,9 +1013,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -0.00000023841858, y: 0, z: 0.00000011920929}
+    m_Target: {x: 1.579288, y: 0.660875, z: -0.9745275}
     speed: 2
-    m_Value: {x: -0.00000023841858, y: 0, z: 0.00000011920929}
+    m_Value: {x: 1.579288, y: 0.660875, z: -0.9745275}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1065,9 +1065,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: -0.24730685, y: -0.36106044, z: 0.09992667, w: -0.89358544}
   m_Size:
-    m_Target: 3.2547324
+    m_Target: 1.8719949
     speed: 2
-    m_Value: 3.1145763
+    m_Value: 1.960204
   m_Ortho:
     m_Target: 1
     speed: 2
