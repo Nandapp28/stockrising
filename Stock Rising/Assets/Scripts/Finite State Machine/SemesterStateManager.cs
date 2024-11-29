@@ -14,6 +14,7 @@ public class SemesterStateManager : MonoBehaviour
     [Header("Game Manager")]
     public float semesterCount = 0;
     public int phaseCount = 0;
+    public string phaseName;
     public Image phaseTitleParent;
     public GameState playerState;
 
@@ -44,9 +45,11 @@ public class SemesterStateManager : MonoBehaviour
     public ActionPhaseState actionPhase = new ActionPhaseState();
     public GameObject actionCardsObj;
     public GameObject actionCardManagerObj;
+    public bool actionCardisSaved = false;
+    public bool actionCardisActivated = false;
 
     //debug
-    public BPPlayersStopStateDebug bPlayersStopStateDebug;
+    //public BPPlayersStopStateDebug bPlayersStopStateDebug;
 
     void Start()
     {
@@ -70,4 +73,20 @@ public class SemesterStateManager : MonoBehaviour
         state.EnterState(this);
     }
 
+    public int CheckPlayerOrder(int playerOrderReq)
+    {
+        foreach (var player in players)
+        {
+            int index = 0;
+            PlayerScript playerScript = player.GetComponent<PlayerScript>();
+            if (playerScript.playerOrder == playerOrderReq)
+            {
+                return index;
+            } else
+            {
+                index += 1;
+            }
+        }
+        return -1;
+    }
 }

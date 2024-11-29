@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class SaveButtonScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public SemesterStateManager state;
 
-    // Update is called once per frame
-    void Update()
+    public void ButtonClicked()
     {
-        
+        // jika berada di fase aksi
+        if (state.phaseName == "Fase Aksi")
+        {
+            state.actionCardisSaved = true;
+        }
     }
 }

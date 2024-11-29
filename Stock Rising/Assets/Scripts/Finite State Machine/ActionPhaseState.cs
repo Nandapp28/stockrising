@@ -12,10 +12,18 @@ public class ActionPhaseState : SemesterBaseState
     float rotateSpeed = 2.0f;
     bool isMoving = false;
 
+    // referensi
+    GameObject player;
+    ActionCardManager actionCardManagerScript;
+
     public override void EnterState(SemesterStateManager semester)
     {
         semester.phaseCount += 1;
+        semester.phaseName = "Fase Aksi";
         semester.phaseTitleParent.gameObject.SetActive(true);
+
+        // referensi ke script ActionCardManager
+        actionCardManagerScript = semester.actionCardManagerObj.GetComponent<ActionCardManager>();
     }
 
     public override void UpdateState(SemesterStateManager semester)
@@ -25,7 +33,19 @@ public class ActionPhaseState : SemesterBaseState
         {
             case GameState.Player1Turn:
                 Debug.Log("Player 1's Turn");
+                // mencari player urutan pertama 
+                player = semester.players[semester.CheckPlayerOrder(1)];
+                PlayerScript playerScript = player.GetComponent<PlayerScript>();
 
+                // jika kartu disimpan
+                if (semester.actionCardisSaved == true)
+                {
+                    // simpan kartu ke data player sesuai warna
+                    SaveActionCard(playerScript);
+
+                    // kembalikan actionCardisSaved ke false
+                    semester.actionCardisSaved = false;
+                }
                 break;
             case GameState.Player2Turn:
                 Debug.Log("Player 2's Turn");
@@ -33,6 +53,30 @@ public class ActionPhaseState : SemesterBaseState
             case GameState.Player3Turn:
                 Debug.Log("Player 3's Turn");
                 break;
+        }
+    }
+
+    private void SaveActionCard(PlayerScript playerScript)
+    {
+        // ambil obj renderer
+        Renderer actionCardObjRenderer = actionCardManagerScript.cardTakenObj.GetComponent<Renderer>();
+        // simpan texture name melalui komponen renderer obj
+        string textureName = actionCardObjRenderer.material.mainTexture.name;
+        if (textureName.StartsWith("uv_M"))
+        {
+            playerScript.AddActionCard("Merah", actionCardManagerScript.cardTakenObj);
+        }
+        else if (textureName.StartsWith("uv_O"))
+        {
+            playerScript.AddActionCard("Oranye", actionCardManagerScript.cardTakenObj);
+        }
+        else if (textureName.StartsWith("uv_B"))
+        {
+            playerScript.AddActionCard("Biru", actionCardManagerScript.cardTakenObj);
+        }
+        else if (textureName.StartsWith("uv_H"))
+        {
+            playerScript.AddActionCard("Hijau", actionCardManagerScript.cardTakenObj);
         }
     }
 
