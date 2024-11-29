@@ -1,6 +1,6 @@
 Using pre-set license
 Built from '2022.3/staging' branch; Version is '2022.3.44f1 (c3ae09b9f03c) revision 12824073'; Using compiler version '192829333'; Build Type 'Release'
-OS: 'Windows 10  (10.0.19041) 64bit Professional' Language: 'en' Physical Memory: 11164 MB
+OS: 'Windows 11  (10.0.22631) 64bit CoreSingleLanguage' Language: 'en' Physical Memory: 32491 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
 
 COMMAND LINE ARGUMENTS:
@@ -11,13 +11,13 @@ C:\Program Files\Unity\Hub\Editor\2022.3.44f1\Editor\Unity.exe
 -name
 AssetImportWorker1
 -projectPath
-D:/POLTEK Batam/Tugas PBL/Semester 5/Workspace/#quarantine/stockrising/Stock Rising
+C:/Users/nanda/Documents/Github/stockrising/Stock Rising
 -logFile
 Logs/AssetImportWorker1.log
 -srvPort
-55522
-Successfully changed project path to: D:/POLTEK Batam/Tugas PBL/Semester 5/Workspace/#quarantine/stockrising/Stock Rising
-D:/POLTEK Batam/Tugas PBL/Semester 5/Workspace/#quarantine/stockrising/Stock Rising
+53685
+Successfully changed project path to: C:/Users/nanda/Documents/Github/stockrising/Stock Rising
+C:/Users/nanda/Documents/Github/stockrising/Stock Rising
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
     "memorysetup-bucket-allocator-granularity=16"
     "memorysetup-bucket-allocator-bucket-count=8"
@@ -49,67 +49,67 @@ D:/POLTEK Batam/Tugas PBL/Semester 5/Workspace/#quarantine/stockrising/Stock Ris
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [13104]  Target information:
+Player connection [46608]  Target information:
 
-Player connection [13104]  * "[IP] 192.168.100.22 [Port] 0 [Flags] 2 [Guid] 2066810835 [EditorId] 2066810835 [Version] 1048832 [Id] WindowsEditor(7,WIN-6IVFJSD488J) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [46608]  * "[IP] 10.17.3.244 [Port] 0 [Flags] 2 [Guid] 3972070332 [EditorId] 3972070332 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-N2VASFAE) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [13104] Host joined multi-casting on [225.0.0.222:54997]...
-Player connection [13104] Host joined alternative multi-casting on [225.0.0.222:34997]...
-[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
-Refreshing native plugins compatible for Editor in 33.21 ms, found 3 plugins.
+Player connection [46608] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [46608] Host joined alternative multi-casting on [225.0.0.222:34997]...
+[PhysX] Initialized MultithreadedTaskDispatcher with 32 workers.
+Refreshing native plugins compatible for Editor in 6.88 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2022.3.44f1 (c3ae09b9f03c)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.44f1/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path D:/POLTEK Batam/Tugas PBL/Semester 5/Workspace/#quarantine/stockrising/Stock Rising/Assets
+[Subsystems] Discovering subsystems at path C:/Users/nanda/Documents/Github/stockrising/Stock Rising/Assets
 GfxDevice: creating device client; threaded=0; jobified=0
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
-    Renderer: AMD Radeon(TM) Vega 8 Graphics (ID=0x15dd)
-    Vendor:   ATI
-    VRAM:     5582 MB
-    Driver:   31.0.12027.9001
+    Renderer: NVIDIA GeForce RTX 4070 Laptop GPU (ID=0x2860)
+    Vendor:   NVIDIA
+    VRAM:     7948 MB
+    Driver:   32.0.15.6094
 Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.44f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.44f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.44f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56164
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56280
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.44f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.033712 seconds.
-- Loaded All Assemblies, in  1.405 seconds
+Registered in 0.004898 seconds.
+- Loaded All Assemblies, in  0.216 seconds
 Native extension for WindowsStandalone target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  1.041 seconds
-Domain Reload Profiling: 2440ms
-	BeginReloadAssembly (431ms)
+- Finished resetting the current domain, in  0.158 seconds
+Domain Reload Profiling: 372ms
+	BeginReloadAssembly (65ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (7ms)
-	RebuildCommonClasses (154ms)
-	RebuildNativeTypeToScriptingClass (61ms)
-	initialDomainReloadingComplete (236ms)
-	LoadAllAssembliesAndSetupDomain (516ms)
-		LoadAssemblies (414ms)
+		CreateAndSetChildDomain (0ms)
+	RebuildCommonClasses (20ms)
+	RebuildNativeTypeToScriptingClass (6ms)
+	initialDomainReloadingComplete (37ms)
+	LoadAllAssembliesAndSetupDomain (84ms)
+		LoadAssemblies (63ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (509ms)
-			TypeCache.Refresh (505ms)
-				TypeCache.ScanAssembly (462ms)
-			ScanForSourceGeneratedMonoScriptInfo (1ms)
-			ResolveRequiredComponents (1ms)
-	FinalizeReload (1042ms)
+		AnalyzeDomain (83ms)
+			TypeCache.Refresh (82ms)
+				TypeCache.ScanAssembly (73ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (0ms)
+	FinalizeReload (159ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (862ms)
+		SetupLoadedEditorAssemblies (131ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (38ms)
-			SetLoadedEditorAssemblies (27ms)
+			InitializePlatformSupportModulesInManaged (6ms)
+			SetLoadedEditorAssemblies (5ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (7ms)
-			ProcessInitializeOnLoadAttributes (613ms)
-			ProcessInitializeOnLoadMethodAttributes (177ms)
+			BeforeProcessingInitializeOnLoad (1ms)
+			ProcessInitializeOnLoadAttributes (88ms)
+			ProcessInitializeOnLoadMethodAttributes (32ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -118,57 +118,58 @@ Domain Reload Profiling: 2440ms
 Worker process is ready to serve import requests
 Caller must complete domain reload
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  2.018 seconds
+- Loaded All Assemblies, in  0.387 seconds
 Native extension for WindowsStandalone target not found
 Package Manager log level set to [2]
 [Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  1.866 seconds
-Domain Reload Profiling: 3877ms
-	BeginReloadAssembly (471ms)
+- Finished resetting the current domain, in  0.364 seconds
+Domain Reload Profiling: 748ms
+	BeginReloadAssembly (91ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (20ms)
+		DisableScriptedObjects (3ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (58ms)
-	RebuildCommonClasses (132ms)
-	RebuildNativeTypeToScriptingClass (43ms)
-	initialDomainReloadingComplete (150ms)
-	LoadAllAssembliesAndSetupDomain (1214ms)
-		LoadAssemblies (949ms)
+		CreateAndSetChildDomain (14ms)
+	RebuildCommonClasses (20ms)
+	RebuildNativeTypeToScriptingClass (6ms)
+	initialDomainReloadingComplete (27ms)
+	LoadAllAssembliesAndSetupDomain (241ms)
+		LoadAssemblies (184ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (541ms)
-			TypeCache.Refresh (474ms)
-				TypeCache.ScanAssembly (440ms)
-			ScanForSourceGeneratedMonoScriptInfo (50ms)
-			ResolveRequiredComponents (14ms)
-	FinalizeReload (1867ms)
+		AnalyzeDomain (108ms)
+			TypeCache.Refresh (93ms)
+				TypeCache.ScanAssembly (83ms)
+			ScanForSourceGeneratedMonoScriptInfo (9ms)
+			ResolveRequiredComponents (6ms)
+	FinalizeReload (364ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (1472ms)
+		SetupLoadedEditorAssemblies (281ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (20ms)
-			SetLoadedEditorAssemblies (12ms)
+			InitializePlatformSupportModulesInManaged (4ms)
+			SetLoadedEditorAssemblies (3ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (195ms)
-			ProcessInitializeOnLoadAttributes (1152ms)
-			ProcessInitializeOnLoadMethodAttributes (67ms)
-			AfterProcessingInitializeOnLoad (24ms)
+			BeforeProcessingInitializeOnLoad (38ms)
+			ProcessInitializeOnLoadAttributes (218ms)
+			ProcessInitializeOnLoadMethodAttributes (13ms)
+			AfterProcessingInitializeOnLoad (6ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (17ms)
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.10 seconds
-Refreshing native plugins compatible for Editor in 6.37 ms, found 3 plugins.
+		AwakeInstancesAfterBackupRestoration (4ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
+Refreshing native plugins compatible for Editor in 4.45 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 3126 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 19 unused Assets / (54.8 KB). Loaded Objects now: 3593.
-Memory consumption went from 122.6 MB to 122.5 MB.
-Total: 7.612500 ms (FindLiveObjects: 0.564400 ms CreateObjectMapping: 0.399600 ms MarkObjects: 6.444800 ms  DeleteObjects: 0.201300 ms)
+Unloading 19 unused Assets / (54.5 KB). Loaded Objects now: 3593.
+Memory consumption went from 124.1 MB to 124.0 MB.
+Total: 2.858700 ms (FindLiveObjects: 0.170200 ms CreateObjectMapping: 0.042400 ms MarkObjects: 2.563500 ms  DeleteObjects: 0.081300 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
   custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
@@ -180,181 +181,69 @@ AssetImportParameters requested are different than current active one (requested
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:scripting/precompiled-assembly-types:Assembly-CSharp: bb3666685089f1e68f32ef8c16d005a1 -> 2f924a55c1f07b93d1dbb5fd8c2ee321
-  custom:scripting/monoscript/fileName/TestDetectScript.cs:  -> 4a127f2fb99ea9f675134d4305f92c9e
 ========================================================================
 Received Prepare
 Caller must complete domain reload
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  1.181 seconds
+- Loaded All Assemblies, in  0.279 seconds
 Native extension for WindowsStandalone target not found
 [Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  2.627 seconds
-Domain Reload Profiling: 3802ms
-	BeginReloadAssembly (413ms)
+- Finished resetting the current domain, in  0.558 seconds
+Domain Reload Profiling: 834ms
+	BeginReloadAssembly (102ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (13ms)
+		DisableScriptedObjects (2ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (84ms)
-	RebuildCommonClasses (113ms)
-	RebuildNativeTypeToScriptingClass (41ms)
-	initialDomainReloadingComplete (95ms)
-	LoadAllAssembliesAndSetupDomain (513ms)
-		LoadAssemblies (730ms)
+		CreateAndSetChildDomain (22ms)
+	RebuildCommonClasses (19ms)
+	RebuildNativeTypeToScriptingClass (6ms)
+	initialDomainReloadingComplete (20ms)
+	LoadAllAssembliesAndSetupDomain (130ms)
+		LoadAssemblies (173ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (33ms)
-			TypeCache.Refresh (12ms)
+		AnalyzeDomain (8ms)
+			TypeCache.Refresh (4ms)
 				TypeCache.ScanAssembly (0ms)
-			ScanForSourceGeneratedMonoScriptInfo (1ms)
-			ResolveRequiredComponents (16ms)
-	FinalizeReload (2629ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (3ms)
+	FinalizeReload (558ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (1399ms)
+		SetupLoadedEditorAssemblies (270ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (23ms)
-			SetLoadedEditorAssemblies (13ms)
+			InitializePlatformSupportModulesInManaged (4ms)
+			SetLoadedEditorAssemblies (3ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (209ms)
-			ProcessInitializeOnLoadAttributes (1063ms)
-			ProcessInitializeOnLoadMethodAttributes (67ms)
-			AfterProcessingInitializeOnLoad (23ms)
+			BeforeProcessingInitializeOnLoad (39ms)
+			ProcessInitializeOnLoadAttributes (203ms)
+			ProcessInitializeOnLoadMethodAttributes (13ms)
+			AfterProcessingInitializeOnLoad (7ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (17ms)
-Refreshing native plugins compatible for Editor in 5.97 ms, found 3 plugins.
+		AwakeInstancesAfterBackupRestoration (5ms)
+Refreshing native plugins compatible for Editor in 2.60 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 3106 Unused Serialized files (Serialized files now loaded: 0)
 Unloading 14 unused Assets / (28.5 KB). Loaded Objects now: 3596.
-Memory consumption went from 118.7 MB to 118.6 MB.
-Total: 6.850400 ms (FindLiveObjects: 0.484800 ms CreateObjectMapping: 0.190100 ms MarkObjects: 6.072700 ms  DeleteObjects: 0.100600 ms)
+Memory consumption went from 120.2 MB to 120.2 MB.
+Total: 1.912600 ms (FindLiveObjects: 0.144800 ms CreateObjectMapping: 0.044500 ms MarkObjects: 1.695200 ms  DeleteObjects: 0.027400 ms)
 
 Prepare: number of updated asset objects reloaded= 0
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:scripting/monoscript/fileName/oldRollButtonScript.cs: 069bf9f67b43f3e06cadad3efaa0193c -> b1182aabb7e0407bde972fda37d2d0bd
-  custom:scripting/monoscript/fileName/GameManager.cs: f6182d712e34e20e3202214886862cdb -> 9933fbcc6190e2a9171c2ec8808a053e
-  custom:scripting/monoscript/fileName/Dice1Script.cs: 9a7e0092add325eff9194758882a818b -> 04f9d2f4a2bafb8503e124d542564e3c
-  custom:scripting/monoscript/fileName/SemesterBaseState.cs: a5d9572bf13bce19b89981d9689a9baf -> b12e1dd51b2b9d890d2b415eb2d713e4
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:scripting/monoscript/fileName/Dice2Script.cs: 86b36700a988be5c1412bf1c540d60e9 -> 96777d184a4fbc9d995312f17d5fe536
-  custom:scripting/monoscript/fileName/PlayerController.cs: 5b090d859ab09be631dc3b0f203f9571 -> d93a52a180fbbe603a59e9aa6da73c83
-  custom:scripting/monoscript/fileName/BP PlayersStopState Debug.cs: fab944adf4eb1a0510666fc8d4cdbc7e -> 12da54c2e9a1760ab22ed026246e389a
-  custom:scripting/monoscript/fileName/FirstSemesterState.cs: 56f4c4296b8ee84dcfd0f63293826688 -> c3a26811c7bdbfc7eb8ed695908e3657
   custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
   custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:scripting/monoscript/fileName/PhaseTitleScript.cs: df077c5bb8c88e20f4f47b896c8286c3 -> f763afd80a2970dcebf0673bbd5fd055
   custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:scripting/monoscript/fileName/PlayerScript.cs: 6b06e46ce8c6c03cb8d063be08a223b5 -> 1f41f3e57bcf3c2fba675a9a4357b03c
   custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
   custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
-  custom:scripting/monoscript/fileName/SecondSemesterState.cs: cdc9b23f8dcddb4ca85d3763fedb8e78 -> c595e505140708d9709dbc9817b32278
-  custom:scripting/monoscript/fileName/DiceScript.cs: e506863feb41a1d65718728faefe8de5 -> 7dbe81f96c93defc47a0b677752ac582
-  custom:scripting/monoscript/fileName/BiddingPhaseState.cs: d2ee7bea6ad58f56441c43b216f408c2 -> 4e0e23bf9ad737a2fa3405d929e3a465
-  custom:scripting/monoscript/fileName/GameManager2.cs: d1e4f8947ab1b583b17465723f5bcb87 -> a4c7f1c5fe3c5edd8618a36706a0a09c
-  custom:scripting/monoscript/fileName/ActionCardScript.cs: 17475eaf38cbc93b58aa60b2d5b05a10 -> b71a46a601405cbf5831852407aa88d8
-  custom:scripting/monoscript/fileName/RollButtonScript.cs: 1fe7644846d9cfc970fcfd8f4172d6a9 -> b857b05d0d2aefadb2717164da69a03f
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:scripting/monoscript/fileName/SaveButtonScript.cs: 5a8a336313358575244a584973503ad5 -> 2502d26f12dca37585df92bebf4dc073
-  custom:scripting/monoscript/fileName/SemesterStateManager.cs: 5cf6c67f0b1b74ae3dc44d0ac9a64af5 -> 5c5e22ee449fe2ba8ecfc09415d929ef
-  custom:scripting/monoscript/fileName/ActionCardManagerScript.cs: 972e99940190d274da4b80e72374d45d -> b7fef44fe1d3dc988957692a75b298ab
-  custom:scripting/monoscript/fileName/ActionPhaseState.cs: 196b8404347bddd4a5602ae90c7fa3be -> dc0912fc75a19b156ae22d6b44cd637b
-  custom:scripting/monoscript/fileName/TransparantBackgroundScript.cs: ce3a9ec997401ffabd097e963f5044f8 -> 03916658d4a4ce44513d14b20943c42b
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:scripting/monoscript/fileName/ActivationButtonScript.cs: f861e6ddd6a05bf3e2042f5b4656d3cc -> 50261cdad89e158b0c01958b384ab14c
-  custom:scripting/monoscript/fileName/DiceManagerScript.cs: 42476543517ee787f95d17072180eebb -> 78a01d5eb45c53bd6ab4d54b9e633300
-========================================================================
-Received Prepare
-Caller must complete domain reload
-Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  1.238 seconds
-Native extension for WindowsStandalone target not found
-[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  2.680 seconds
-Domain Reload Profiling: 3910ms
-	BeginReloadAssembly (442ms)
-		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (15ms)
-		BackupInstance (0ms)
-		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (70ms)
-	RebuildCommonClasses (99ms)
-	RebuildNativeTypeToScriptingClass (36ms)
-	initialDomainReloadingComplete (91ms)
-	LoadAllAssembliesAndSetupDomain (561ms)
-		LoadAssemblies (798ms)
-		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (31ms)
-			TypeCache.Refresh (11ms)
-				TypeCache.ScanAssembly (0ms)
-			ScanForSourceGeneratedMonoScriptInfo (0ms)
-			ResolveRequiredComponents (16ms)
-	FinalizeReload (2682ms)
-		ReleaseScriptCaches (0ms)
-		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (1475ms)
-			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (19ms)
-			SetLoadedEditorAssemblies (8ms)
-			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (193ms)
-			ProcessInitializeOnLoadAttributes (1150ms)
-			ProcessInitializeOnLoadMethodAttributes (76ms)
-			AfterProcessingInitializeOnLoad (28ms)
-			EditorAssembliesLoaded (0ms)
-		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (21ms)
-Refreshing native plugins compatible for Editor in 9.12 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3106 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 14 unused Assets / (28.4 KB). Loaded Objects now: 3599.
-Memory consumption went from 118.7 MB to 118.6 MB.
-Total: 8.293400 ms (FindLiveObjects: 0.556100 ms CreateObjectMapping: 0.417200 ms MarkObjects: 7.205000 ms  DeleteObjects: 0.112600 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:scripting/monoscript/fileName/oldRollButtonScript.cs: 069bf9f67b43f3e06cadad3efaa0193c -> b1182aabb7e0407bde972fda37d2d0bd
-  custom:scripting/monoscript/fileName/GameManager.cs: f6182d712e34e20e3202214886862cdb -> 9933fbcc6190e2a9171c2ec8808a053e
-  custom:scripting/monoscript/fileName/Dice1Script.cs: 9a7e0092add325eff9194758882a818b -> 04f9d2f4a2bafb8503e124d542564e3c
-  custom:scripting/monoscript/fileName/SemesterBaseState.cs: a5d9572bf13bce19b89981d9689a9baf -> b12e1dd51b2b9d890d2b415eb2d713e4
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:scripting/monoscript/fileName/Dice2Script.cs: 86b36700a988be5c1412bf1c540d60e9 -> 96777d184a4fbc9d995312f17d5fe536
-  custom:scripting/monoscript/fileName/PlayerController.cs: 5b090d859ab09be631dc3b0f203f9571 -> d93a52a180fbbe603a59e9aa6da73c83
-  custom:scripting/monoscript/fileName/BP PlayersStopState Debug.cs: fab944adf4eb1a0510666fc8d4cdbc7e -> 12da54c2e9a1760ab22ed026246e389a
-  custom:scripting/monoscript/fileName/FirstSemesterState.cs: 56f4c4296b8ee84dcfd0f63293826688 -> c3a26811c7bdbfc7eb8ed695908e3657
-  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:scripting/monoscript/fileName/PhaseTitleScript.cs: df077c5bb8c88e20f4f47b896c8286c3 -> f763afd80a2970dcebf0673bbd5fd055
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:scripting/monoscript/fileName/PlayerScript.cs: 6b06e46ce8c6c03cb8d063be08a223b5 -> 1f41f3e57bcf3c2fba675a9a4357b03c
-  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
-  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
-  custom:scripting/monoscript/fileName/SecondSemesterState.cs: cdc9b23f8dcddb4ca85d3763fedb8e78 -> c595e505140708d9709dbc9817b32278
-  custom:scripting/monoscript/fileName/DiceScript.cs: e506863feb41a1d65718728faefe8de5 -> 7dbe81f96c93defc47a0b677752ac582
-  custom:scripting/monoscript/fileName/BiddingPhaseState.cs: d2ee7bea6ad58f56441c43b216f408c2 -> 4e0e23bf9ad737a2fa3405d929e3a465
-  custom:scripting/monoscript/fileName/GameManager2.cs: d1e4f8947ab1b583b17465723f5bcb87 -> a4c7f1c5fe3c5edd8618a36706a0a09c
-  custom:scripting/monoscript/fileName/ActionCardScript.cs: 17475eaf38cbc93b58aa60b2d5b05a10 -> b71a46a601405cbf5831852407aa88d8
-  custom:scripting/monoscript/fileName/RollButtonScript.cs: 1fe7644846d9cfc970fcfd8f4172d6a9 -> b857b05d0d2aefadb2717164da69a03f
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:scripting/monoscript/fileName/SaveButtonScript.cs: 5a8a336313358575244a584973503ad5 -> 2502d26f12dca37585df92bebf4dc073
-  custom:scripting/monoscript/fileName/SemesterStateManager.cs: 5cf6c67f0b1b74ae3dc44d0ac9a64af5 -> 5c5e22ee449fe2ba8ecfc09415d929ef
-  custom:scripting/monoscript/fileName/ActionCardManagerScript.cs: 972e99940190d274da4b80e72374d45d -> b7fef44fe1d3dc988957692a75b298ab
-  custom:scripting/monoscript/fileName/ActionPhaseState.cs: 196b8404347bddd4a5602ae90c7fa3be -> dc0912fc75a19b156ae22d6b44cd637b
-  custom:scripting/monoscript/fileName/TransparantBackgroundScript.cs: ce3a9ec997401ffabd097e963f5044f8 -> 03916658d4a4ce44513d14b20943c42b
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:scripting/monoscript/fileName/ActivationButtonScript.cs: f861e6ddd6a05bf3e2042f5b4656d3cc -> 50261cdad89e158b0c01958b384ab14c
-  custom:scripting/monoscript/fileName/DiceManagerScript.cs: 42476543517ee787f95d17072180eebb -> 78a01d5eb45c53bd6ab4d54b9e633300
