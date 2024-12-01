@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class ActionCardScript : MonoBehaviour
 {
+    // referensi
     public Material cardMaterial;
     Transform camMiddlePoint;
     Vector3 initialPosition;
     Quaternion initialRotation;
     public ActionCardManager actionCardManager;
+    //public Rigidbody rb;
 
     [SerializeField] bool isMoving = false;
     [SerializeField] bool isTaked;
+    [SerializeField] public bool isSaved;
     float moveSpeed = 8.0f;
     float rotateSpeed = 8.0f;
 
@@ -19,6 +22,7 @@ public class ActionCardScript : MonoBehaviour
 
     void Start()
     {
+        actionCardManager = GameObject.Find("ActionCardManager").GetComponent<ActionCardManager>();
         camMiddlePoint = Camera.main.transform.Find("Middle Point").gameObject.transform;
         initialPosition = transform.position; initialRotation = transform.rotation;
         isTaked = false;
@@ -26,43 +30,47 @@ public class ActionCardScript : MonoBehaviour
 
     void OnMouseDown()
     {
-        Debug.Log("Card Clicked");
+        //Debug.Log("Card Clicked");
         if (camMiddlePoint != null)
         {
-            Debug.Log("Camera Middle Point Detected");
+            //Debug.Log("Camera Middle Point Detected");
             isTaked = !isTaked;
             actionCardManager.cardTaken = !actionCardManager.cardTaken;
             actionCardManager.cardTakenObj = gameObject;
 
-        } else
-        {
-            Debug.Log("Camera Middle Point Not Detected");
         }
     }
 
     void Update()
     {
+        // animasi take & put down card
         if (isTaked == true)
         {
-            Debug.Log("isTaked adalah " + isTaked);
+            //Debug.Log("isTaked adalah " + isTaked);
             isMoving = true;
             if (isMoving == true)
             {
-                MoveCard(camMiddlePoint.position, camMiddlePoint.rotation);
+                TakeCardAnim(camMiddlePoint.position, camMiddlePoint.rotation);
+            }
+        } else
+        {
+            //Debug.Log("isTaked adalah " + isTaked);
+            isMoving = true;
+            if (isMoving == true)
+            {
+                TakeCardAnim(initialPosition, initialRotation);
             }
         }
-        else
+
+        // animasi save card
+        if (isSaved == true)
         {
-            Debug.Log("isTaked adalah " + isTaked);
-            isMoving = true;
-            if (isMoving == true)
-            {
-                MoveCard(initialPosition, initialRotation);
-            }
+            //actionCardManager.cardTaken = false;
+            Destroy(gameObject);
         }
     }
 
-    void MoveCard(Vector3 targetPosition, Quaternion targetRotation)
+    void TakeCardAnim(Vector3 targetPosition, Quaternion targetRotation)
     {
         transform.position = Vector3.Lerp(
             transform.position,

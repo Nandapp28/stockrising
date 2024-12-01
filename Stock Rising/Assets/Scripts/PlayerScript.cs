@@ -7,18 +7,29 @@ using static BiddingPhaseState;
 
 public class PlayerScript : MonoBehaviour
 {
+    public string playerName;
     public int playerOrder = 0;
-    public int playerOldOrder = 0;
+    //public int playerOldOrder = 0;
 
-    // jumlah kartu aksi
+    // referensi UI 
+    private TextMeshProUGUI nameText;
+    private TextMeshProUGUI orderNumberText;
+
+    // jumlah point 
+    [Header("My Point")]
+    public int investmentPoint = 15;
+
+    // referensi UI point
+    private TextMeshProUGUI investmentPointText;
+
+    // jumlah kartu 
+    [Header("My Cards")]
     public int actionCMerah = 0;
     public int actionCOranye = 0;
     public int actionCBiru = 0;
     public int actionCHijau = 0;
 
-    // referensi UI
-    private TextMeshProUGUI nameText;
-    private TextMeshProUGUI orderNumberText;
+    // referensi UI kartu 
     private TextMeshProUGUI actionCMerahText;
     private TextMeshProUGUI actionCOranyeText;
     private TextMeshProUGUI actionCBiruText;
@@ -29,19 +40,34 @@ public class PlayerScript : MonoBehaviour
 
     void Awake()
     {
+        LoadReferences();
+    }
+
+    private void LoadReferences()
+    {
+        // load name
         Transform tmpNameTransform = transform.Find("Player Name");
-        if (tmpNameTransform != null )
+        if (tmpNameTransform != null)
         {
             nameText = tmpNameTransform.GetComponent<TextMeshProUGUI>();
         }
 
+        // load order number
         Transform tmpOrderNumTransform = transform.Find("Player Order Number");
-        if (tmpOrderNumTransform != null )
+        if (tmpOrderNumTransform != null)
         {
             orderNumberText = tmpOrderNumTransform.GetComponent<TextMeshProUGUI>();
         }
 
-        Transform tmpActionCardsTransform = transform.Find("Player Action Cards");
+        // load investment points
+        Transform tmpIPTransform = transform.Find("Player IP");
+        if (tmpOrderNumTransform != null)
+        {
+            investmentPointText = tmpIPTransform.GetComponent<TextMeshProUGUI>();
+        }
+
+            // load total action cards
+            Transform tmpActionCardsTransform = transform.Find("Player Action Cards");
         if (tmpOrderNumTransform != null)
         {
             orderNumberText = tmpOrderNumTransform.GetComponent<TextMeshProUGUI>();
@@ -54,13 +80,14 @@ public class PlayerScript : MonoBehaviour
 
     void Update()
     {
-        PrintOrderNumber(playerOrder);
+        SetInitialize();
         CountActionCards();
     }
 
-    void PrintOrderNumber(int iPlayerOrder)
+    void SetInitialize()
     {
-        orderNumberText.text = iPlayerOrder.ToString();
+        orderNumberText.text = playerOrder.ToString();
+        investmentPointText.text = "x" + investmentPoint.ToString();
     }
 
     void CountActionCards()

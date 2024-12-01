@@ -6,22 +6,61 @@ public class ActionCardManager : MonoBehaviour
 {
     public Texture[] actionCardTextures;
     GameObject[] actionCards;
+    public GameObject actionCardPrefab;
+    public Transform spawnParent;
+
+    public SemesterStateManager state;
 
     public GameObject transparantBg2nd;
     public GameObject actionButtons;
 
     public bool cardTaken = false;
     public GameObject cardTakenObj;
-    
-    void Start()
+
+    void OnEnable()
     {
+        // fungsi untuk menampilkan kartu sesuai jumlah player
+        SpawnCards();
+
+        // cari kartu yang sudah ter-spawn, kemudian di randomize texturenya
         actionCards = GameObject.FindGameObjectsWithTag("Action Card");
         if (actionCards.Length != 0)
         {
             RandomizeActionCard();
-        } else
+        }
+        else
         {
             Debug.Log("Action Card Object tidak terdeteksi");
+        }
+    }
+
+    private void SpawnCards()
+    {
+        // hitung total pemain kemudian di kali 2 utk mendapatkan jumlah kartu
+        int totalPlayers = state.players.Length;
+        int totalActionCards = totalPlayers * 2;
+        if (totalPlayers == 3)
+        {
+            for (int i = 0; i < totalActionCards; i++)
+            {
+                float xPosition = -i;
+                Vector3 spawnPosition = new Vector3(xPosition, 0, 0);
+                GameObject card = Instantiate(actionCardPrefab, spawnPosition, Quaternion.identity);
+
+                // spawn kartu di parent tertentu
+                if (spawnParent != null)
+                {
+                    card.transform.SetParent(spawnParent, false);
+                }
+            }
+        }
+        else if (totalPlayers == 4)
+        {
+
+        }
+        else if (totalPlayers == 5)
+        {
+
         }
     }
 
@@ -37,7 +76,10 @@ public class ActionCardManager : MonoBehaviour
             Renderer cardRenderer = card.GetComponent<Renderer>();
             if (cardRenderer != null)
             {
-                cardRenderer.material.mainTexture = selectedTexture;
+                //cardRenderer.material.mainTexture = selectedTexture;
+                Material newMaterial = new Material(cardRenderer.material);
+                newMaterial.mainTexture = selectedTexture;
+                cardRenderer.material = newMaterial;
             }
         }
     }

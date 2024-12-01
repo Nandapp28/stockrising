@@ -737,7 +737,7 @@ GameObject:
   - component: {fileID: 1839776353096801841}
   - component: {fileID: 1769815111052195358}
   m_Layer: 5
-  m_Name: Player Money
+  m_Name: Player IP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1223,8 +1223,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cd8928192bf5e8459642e2b21da1365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerName: 
   playerOrder: 0
-  playerOldOrder: 0
+  investmentPoint: 15
   actionCMerah: 0
   actionCOranye: 0
   actionCBiru: 0

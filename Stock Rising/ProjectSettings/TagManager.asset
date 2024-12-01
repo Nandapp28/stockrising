@@ -7,6 +7,8 @@ TagManager:
   - PhaseTitle
   - Action Card
   - Camera Middle Point
+  - State Manager
+  - Action Card Manager
   layers:
   - Default
   - TransparentFX
