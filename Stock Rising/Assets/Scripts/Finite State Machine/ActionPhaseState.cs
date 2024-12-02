@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class ActionPhaseState : SemesterBaseState
 {
+    int setInitIndex = 0;
     float timeEnterCD = 2.0f;
     string currentFx = "null"; int indexFx = 0;
 
@@ -20,6 +21,12 @@ public class ActionPhaseState : SemesterBaseState
     GameObject player;
     ActionCardManager actionCardManagerScript;
     Animator actionCardAnim;
+    Renderer actionCardTakenRenderer;
+
+    string savedActionCardTakenTexture;
+
+    // insider trade fx needed
+    int rumorCardIsTakedi = 0;
 
     public override void EnterState(SemesterStateManager semester)
     {
@@ -33,13 +40,23 @@ public class ActionPhaseState : SemesterBaseState
 
     public override void UpdateState(SemesterStateManager semester)
     {
-        SetInitialize(semester);
+        Debug.Log("currentFx = " + currentFx);
+        Debug.Log(savedActionCardTakenTexture);
+        if (setInitIndex == 0)
+        {
+            SetInitialize(semester);
+        }
         switch (semester.playerState)
         {
             case GameState.Player1Turn:
                 Debug.Log("Player 1's Turn");
                 player = semester.players[semester.CheckPlayerOrder(1)]; // mencari player urutan pertama 
                 PlayerScript playerScript = player.GetComponent<PlayerScript>();
+
+                if (currentFx == "Insider Trade")
+                {
+                    InsiderTrade(semester, savedActionCardTakenTexture);
+                } 
 
                 // jika kartu disimpan ==========================================================================================
                 if (semester.actionCardisSaved == true)
@@ -69,17 +86,27 @@ public class ActionPhaseState : SemesterBaseState
                 }
 
                 // jika kartu diaktifkan ========================================================================================
-                if (semester.actionCardisActivated == true) 
+                if (semester.actionCardisActivated == true) // ini sifatnya sekali klik
                 {
-                    ActionCardDB(playerScript); // akses Dictionary kartu aksi, dan jalankan fungsi yang sesuai
+                    //if (savedActionCardTakenTexture != null)
+                    //{
+
+                    //}
                     semester.actionCardisActivated = false; // kembalikan actionCardisActivated ke false
                     actionCardAnim = actionCardManagerScript.cardTakenObj.GetComponent<Animator>(); // jalankan animasi menyimpan kartu
                     if (actionCardAnim != null)
                     {
+                        savedActionCardTakenTexture = actionCardManagerScript.cardTakenObj.GetComponent<Renderer>().material.mainTexture.name;
                         actionCardAnim.SetTrigger("TrSaveCard");
                     }
+                    //ActionCardDB(playerScript, semester); // akses Dictionary kartu aksi, dan jalankan fungsi yang sesuai
                     //semester.playerState = (GameState)2; // ganti state pemain
+                }
 
+                if (semester.actionCardisActivated == false && actionCardManagerScript.cardTakenIsDestroy == true)
+                {
+                    actionCardManagerScript.cardTakenIsDestroy = false;
+                    ActionCardDB(playerScript, semester); // akses Dictionary kartu aksi, dan jalankan fungsi yang sesuai
                 }
 
                 break;
@@ -110,6 +137,7 @@ public class ActionPhaseState : SemesterBaseState
             {
                 semester.actionCardsObj.SetActive(true);
                 semester.actionCardManagerObj.SetActive(true);
+                setInitIndex = 1;
             }
         }
     }
@@ -166,12 +194,13 @@ public class ActionPhaseState : SemesterBaseState
         }
     }
 
-    private void ActionCardDB(PlayerScript playerScript)
+    private void ActionCardDB(PlayerScript playerScript, SemesterStateManager semester)
     {
         // ambil obj renderer
-        Renderer actionCardObjRenderer = actionCardManagerScript.cardTakenObj.GetComponent<Renderer>();
+        //Renderer actionCardObjRenderer = actionCardManagerScript.cardTakenObj.GetComponent<Renderer>();
         // simpan texture name melalui komponen renderer obj
-        string textureName = actionCardObjRenderer.material.mainTexture.name;
+        //string textureName = actionCardObjRenderer.material.mainTexture.name;
+        string textureName = savedActionCardTakenTexture;
 
         // membuat dynamic dictionary
         Dictionary<Func<string, bool>, Action> dynamicActions = new Dictionary<Func<string, bool>, Action>
@@ -180,7 +209,7 @@ public class ActionPhaseState : SemesterBaseState
                 FlashbuyFx();
             } },
             { name => name.EndsWith("IT"), () => {
-                Debug.Log("Insider Trade Card is Activated");
+                InsiderTradeFx();
             } },
             { name => name.EndsWith("SS"), () => {
                 Debug.Log("Stock Split Card is Activated");
@@ -192,6 +221,7 @@ public class ActionPhaseState : SemesterBaseState
                 Debug.Log("Tender Offer Card is Activated");
             } },
         };
+        
         // Cari pola yang cocok
         foreach (var entry in dynamicActions)
         {
@@ -205,16 +235,97 @@ public class ActionPhaseState : SemesterBaseState
 
     private void FlashbuyFx()
     {
-        Debug.Log("Pilih 2 kartu untuk disimpan"); // show title
+        //Debug.Log("Pilih 2 kartu untuk disimpan"); // show title
         Button activateButton = GameObject.Find("Button Aktifkan Kartu").GetComponent<Button>(); // referensi button
         activateButton.enabled = false; // disable activate button
         currentFx = "Flashbuy";
         actionCardManagerScript.cardTaken = false;
     }
 
+    // INSIDER TRADE EFFECT SECTION ==============================================================================================
+
     private void InsiderTradeFx()
     {
+        // ambil obj renderer
+        //savedActionCardTakenTexture = actionCardManagerScript.cardTakenObj.GetComponent<Renderer>().material.mainTexture.name;
+        //actionCardTakenRenderer = savedActionCardTaken.GetComponent<Renderer>();
+        //actionCardTakenRenderer = actionCardManagerScript.cardTakenObj.GetComponent<Renderer>();
+        currentFx = "Insider Trade";
+    }
 
+    private void InsiderTrade(SemesterStateManager semester, string textureName)
+    {
+        //// simpan texture name melalui komponen renderer obj
+        //textureName = actionCardTakenRenderer.material.mainTexture.name;
+
+        // camera movement ke board
+        actionCardManagerScript.cardTaken = false;
+        isMoving = true;
+        MoveCamera(semester.mainCamera, semester.cameraPost1);
+
+        // deactivate bacgkground dan hide kartu aksi
+        semester.transparantBgObj.SetActive(false);
+        semester.actionCardsObj.SetActive(false);
+
+        // munculkan tombol "selesai"
+        semester.rumorCardButton.SetActive(true);
+
+        if (textureName.StartsWith("uv_M"))
+        {
+            ITFindBoard("Red Board", semester);
+        }
+        else if (textureName.StartsWith("uv_O"))
+        {
+            ITFindBoard("Orange Board", semester);
+        }
+        else if (textureName.StartsWith("uv_B"))
+        {
+            ITFindBoard("Blue Board", semester);
+        }
+        else if (textureName.StartsWith("uv_H"))
+        {
+            ITFindBoard("Green Board", semester);
+        }
+        else
+        {
+            Debug.Log("tidak terdeteksi uv_apa");
+        }
+    }
+
+    private void ITFindBoard(string boardName, SemesterStateManager semester)
+    {
+        GameObject rumorCardi = null;
+        GameObject board = GameObject.Find(boardName);
+        Transform rumorCards = board.transform.Find("Rumor Cards");
+        int childCount = rumorCards.transform.childCount;
+        if (childCount == 4)
+        {
+            GameObject rumorCard = rumorCards.transform.Find("Rumor Card 1").transform.Find("Card").gameObject;
+            if (rumorCardIsTakedi == 0)
+            {
+                rumorCard.GetComponent<RumorCardScript>().isTaked = true; // jalankan animasi untuk melihat kartu rumor
+                rumorCardIsTakedi = 1;
+            }
+            semester.rumorCardButton.transform.Find("Button Selesai Kartu").GetComponent<RumorCardButtonScript>().rumorCardTaken = rumorCard; // beri referensi di script button "selesai"
+            rumorCardi = rumorCard;
+        }
+
+        // tunggu sampai di klik user dan kartu kembali ke papan
+        if (rumorCardi != null)
+        {
+            // jika user sudah klik button "selesai" dan isMoving menjadi false
+            if (rumorCardi.GetComponent<RumorCardScript>().isTaked == false)
+            {
+                Debug.Log("Insider Trade Selesai");
+                semester.rumorCardButton.SetActive(false);
+                // kamera kembali
+                isMoving = true;
+                MoveCamera(semester.mainCamera, semester.cameraPost2);
+                // deactivate bacgkground dan hide kartu aksi
+                semester.transparantBgObj.SetActive(true);
+                semester.actionCardsObj.SetActive(true);
+            }
+        }
     }
 
     private void StockSplitFx()

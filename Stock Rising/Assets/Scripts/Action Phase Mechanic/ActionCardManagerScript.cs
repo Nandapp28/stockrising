@@ -15,6 +15,7 @@ public class ActionCardManager : MonoBehaviour
     public GameObject actionButtons;
 
     public bool cardTaken = false;
+    public bool cardTakenIsDestroy = false;
     public GameObject cardTakenObj;
 
     void OnEnable()
@@ -90,6 +91,7 @@ public class ActionCardManager : MonoBehaviour
         {
             transparantBg2nd.SetActive(true);
             actionButtons.SetActive(true);
+            cardTakenIsDestroy = false;
         } else
         {
             transparantBg2nd.SetActive(false);

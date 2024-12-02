@@ -9,6 +9,8 @@ TagManager:
   - Camera Middle Point
   - State Manager
   - Action Card Manager
+  - Rumor Card
+  - Rumor Card Manager
   layers:
   - Default
   - TransparentFX

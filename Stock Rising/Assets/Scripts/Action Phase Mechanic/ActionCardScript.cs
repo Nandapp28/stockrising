@@ -67,6 +67,7 @@ public class ActionCardScript : MonoBehaviour
         {
             //actionCardManager.cardTaken = false;
             Destroy(gameObject);
+            actionCardManager.GetComponent<ActionCardManager>().cardTakenIsDestroy = true;
         }
     }
 

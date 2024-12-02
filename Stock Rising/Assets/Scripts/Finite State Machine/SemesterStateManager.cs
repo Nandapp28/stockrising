@@ -47,6 +47,7 @@ public class SemesterStateManager : MonoBehaviour
     public GameObject actionCardManagerObj;
     public bool actionCardisSaved = false;
     public bool actionCardisActivated = false;
+    public GameObject rumorCardButton;
 
     //debug
     //public BPPlayersStopStateDebug bPlayersStopStateDebug;
