@@ -27,7 +27,7 @@ public class ActionPhaseState : SemesterBaseState
     
     bool flashbuyIsDone = false;
     bool insiderTradeIsDone = false;
-    bool stockSplisIsDone = false;
+    bool stockSplitIsDone = false;
 
     // insider trade fx needed
     int rumorCardIsTakedi = 0;
@@ -70,6 +70,10 @@ public class ActionPhaseState : SemesterBaseState
                 {
                     InsiderTrade(semester, savedActionCardTakenTexture);
                 } 
+                else if (currentFx == "Stock Split")
+                {
+                    StockSplit(semester, savedActionCardTakenTexture);
+                }
                 else if ( currentFx == "null")
                 {
                     if (flashbuyIsDone == true || insiderTradeIsDone == true)
@@ -235,7 +239,7 @@ public class ActionPhaseState : SemesterBaseState
                 InsiderTradeFx();
             } },
             { name => name.EndsWith("SS"), () => {
-                Debug.Log("Stock Split Card is Activated");
+                StockSplitFx();
             } },
             { name => name.EndsWith("TF"), () => {
                 Debug.Log("Trade Free Card is Activated"); 
@@ -259,10 +263,6 @@ public class ActionPhaseState : SemesterBaseState
     // FLASHBUY EFFECT SECTION ==============================================================================================
     private void FlashbuyFx() // sekali main
     {
-        //Debug.Log("Pilih 2 kartu untuk disimpan"); // show title
-        //Button activateButton = GameObject.Find("Button Aktifkan Kartu").GetComponent<Button>(); // referensi button
-        //Button activateButton = GameObject.FindGameObjectWithTag("Button Fase Aksi: Aktifkan").GetComponent<Button>();
-        //activateButton.enabled = false; // disable activate button
         currentFx = "Flashbuy";
         actionCardManagerScript.cardTaken = false;
     }
@@ -281,7 +281,6 @@ public class ActionPhaseState : SemesterBaseState
         if (!insiderTradeIsDone)
         {
             // camera movement ke board
-            //actionCardManagerScript.cardTaken = false;
             isMoving = true;
             MoveCamera(semester.mainCamera, semester.cameraPost1);
 
@@ -359,15 +358,77 @@ public class ActionPhaseState : SemesterBaseState
 
 
     // STOCK SPLIT EFFECT SECTION ==============================================================================================
-    private void StockSplitFx()
+    private void StockSplitFx() // sekali main
     {
-
+        currentFx = "Stock Split";
+        actionCardManagerScript.cardTaken = false;
     }
+
+    private void StockSplit(SemesterStateManager semester, string textureName) // main di update()
+    {
+        if (!stockSplitIsDone) // jika stock split effect masih berjalan
+        {
+            // camera movement ke board
+            isMoving = true;
+            MoveCamera(semester.mainCamera, semester.cameraPost1);
+
+            // deactivate bacgkground dan hide kartu aksi
+            semester.transparantBgObj.SetActive(false);
+            semester.actionCardsObj.SetActive(false);
+        }
+        else // jika stock split effect sudah selesai
+        {
+            isMoving = true;
+            MoveCamera(semester.mainCamera, semester.cameraPost2);
+            // deactivate bacgkground dan hide kartu aksi
+            semester.transparantBgObj.SetActive(true);
+            semester.actionCardsObj.SetActive(true);
+            if (isMoving == false)
+            {
+                currentFx = "null";
+            }
+        }
+
+        if (textureName.StartsWith("uv_M"))
+        {
+            //ITFindBoard("Red Board", semester);
+        }
+        else if (textureName.StartsWith("uv_O"))
+        {
+            //ITFindBoard("Orange Board", semester);
+        }
+        else if (textureName.StartsWith("uv_B"))
+        {
+            //ITFindBoard("Blue Board", semester);
+        }
+        else if (textureName.StartsWith("uv_H"))
+        {
+            //ITFindBoard("Green Board", semester);
+        }
+        else
+        {
+            Debug.Log("tidak terdeteksi uv_apa");
+        }
+    }
+
+    private void SSFindBoard(string boardName, SemesterStateManager semester)
+    {
+        // ambil referensi board script terkait
+        GameObject board = GameObject.Find(boardName); // cari board
+        BoardScript boardScript = board.GetComponent<BoardScript>();
+
+        // kalkulasi saham yang dipecah
+        
+    }
+
+    // TRADE FEE EFFECT SECTION ==============================================================================================
 
     private void TradeFeeFx()
     {
 
     }
+
+    // TENDER OFFER EFFECT SECTION ==============================================================================================
 
     private void TenderOfferFx()
     {

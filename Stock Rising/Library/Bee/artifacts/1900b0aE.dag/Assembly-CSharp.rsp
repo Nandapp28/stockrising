@@ -361,6 +361,8 @@
 "Assets/Scripts/Bidding Phase Mechanic/DiceScript.cs"
 "Assets/Scripts/Bidding Phase Mechanic/oldRollButtonScript.cs"
 "Assets/Scripts/Bidding Phase Mechanic/RollButtonScript.cs"
+"Assets/Scripts/BoardManagerScript.cs"
+"Assets/Scripts/BoardScript.cs"
 "Assets/Scripts/Debug Script/BP PlayersStopState Debug.cs"
 "Assets/Scripts/Finite State Machine/ActionPhaseState.cs"
 "Assets/Scripts/Finite State Machine/BiddingPhaseState.cs"
