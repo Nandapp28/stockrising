@@ -24,20 +24,6 @@ public class RumorCardScript : MonoBehaviour
         isTaked = false;
     }
 
-    //void Update()
-    //{
-    //    if (isTaked == true)
-    //    {
-    //        Debug.Log(camMiddlePoint.position);
-    //        transform.position = camMiddlePoint.position;
-    //        transform.rotation = camMiddlePoint.rotation;
-    //    } else
-    //    {
-    //        transform.position = initialPosition;
-    //        transform.rotation = initialRotation;
-    //    }
-    //}
-
     void Update()
     {
         // animasi take & put down card

@@ -11,6 +11,7 @@ TagManager:
   - Action Card Manager
   - Rumor Card
   - Rumor Card Manager
+  - 'Button Fase Aksi: Aktifkan'
   layers:
   - Default
   - TransparentFX
