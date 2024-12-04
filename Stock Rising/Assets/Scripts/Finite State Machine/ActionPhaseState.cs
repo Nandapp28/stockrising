@@ -32,6 +32,9 @@ public class ActionPhaseState : SemesterBaseState
     // insider trade fx needed
     int rumorCardIsTakedi = 0;
 
+    // stock split fx needed
+    bool isStockSplitCardSaved = false;
+
     public override void EnterState(SemesterStateManager semester)
     {
         semester.phaseCount += 1;
@@ -72,11 +75,11 @@ public class ActionPhaseState : SemesterBaseState
                 } 
                 else if (currentFx == "Stock Split")
                 {
-                    StockSplit(semester, savedActionCardTakenTexture);
+                    StockSplit(semester, savedActionCardTakenTexture, playerScript);
                 }
                 else if ( currentFx == "null")
                 {
-                    if (flashbuyIsDone == true || insiderTradeIsDone == true)
+                    if (flashbuyIsDone == true || insiderTradeIsDone == true || stockSplitIsDone == true)
                     {
                         semester.playerState = (GameState)1;
                         savedActionCardTakenTexture = null;
@@ -208,19 +211,20 @@ public class ActionPhaseState : SemesterBaseState
         string textureName = actionCardObjRenderer.material.mainTexture.name;
         if (textureName.StartsWith("uv_M"))
         {
-            playerScript.AddActionCard("Merah", actionCardManagerScript.cardTakenObj);
+            //playerScript.AddActionCard("Merah", actionCardManagerScript.cardTakenObj);
+            playerScript.AddActionCard("Merah", textureName.ToString());
         }
         else if (textureName.StartsWith("uv_O"))
         {
-            playerScript.AddActionCard("Oranye", actionCardManagerScript.cardTakenObj);
+            playerScript.AddActionCard("Oranye", textureName.ToString());
         }
         else if (textureName.StartsWith("uv_B"))
         {
-            playerScript.AddActionCard("Biru", actionCardManagerScript.cardTakenObj);
+            playerScript.AddActionCard("Biru", textureName.ToString());
         }
         else if (textureName.StartsWith("uv_H"))
         {
-            playerScript.AddActionCard("Hijau", actionCardManagerScript.cardTakenObj);
+            playerScript.AddActionCard("Hijau", textureName.ToString());
         }
     }
 
@@ -363,8 +367,8 @@ public class ActionPhaseState : SemesterBaseState
         currentFx = "Stock Split";
         actionCardManagerScript.cardTaken = false;
     }
-
-    private void StockSplit(SemesterStateManager semester, string textureName) // main di update()
+    
+    private void StockSplit(SemesterStateManager semester, string textureName, PlayerScript playerScript) // main di update()
     {
         if (!stockSplitIsDone) // jika stock split effect masih berjalan
         {
@@ -389,36 +393,104 @@ public class ActionPhaseState : SemesterBaseState
             }
         }
 
+        string sectorColor = null;
+
         if (textureName.StartsWith("uv_M"))
         {
-            //ITFindBoard("Red Board", semester);
+            sectorColor = "Merah";
+            SSFindBoard("Red Board", semester);
         }
         else if (textureName.StartsWith("uv_O"))
         {
-            //ITFindBoard("Orange Board", semester);
+            sectorColor = "Oranye";
+            SSFindBoard("Orange Board", semester);
         }
         else if (textureName.StartsWith("uv_B"))
         {
-            //ITFindBoard("Blue Board", semester);
+            sectorColor = "Biru";
+            SSFindBoard("Blue Board", semester);
         }
         else if (textureName.StartsWith("uv_H"))
         {
-            //ITFindBoard("Green Board", semester);
+            sectorColor = "Hijau";
+            SSFindBoard("Green Board", semester);
         }
         else
         {
             Debug.Log("tidak terdeteksi uv_apa");
         }
+
+
+        // simpan kartu jika player memiliki minimal 2 kartu aksi
+        if (sectorColor != null && isStockSplitCardSaved == false)
+        {
+            if (playerScript.actionCardsOwned.Count >= 2)
+            {
+                playerScript.AddActionCard(sectorColor, savedActionCardTakenTexture);
+            }
+            isStockSplitCardSaved = true;
+        }
     }
 
     private void SSFindBoard(string boardName, SemesterStateManager semester)
     {
-        // ambil referensi board script terkait
+        // ambil referensi board script terkait dan tarik value saham nya
         GameObject board = GameObject.Find(boardName); // cari board
         BoardScript boardScript = board.GetComponent<BoardScript>();
+        float boardStockValue = boardScript.currentStockValue;
 
         // kalkulasi saham yang dipecah
-        
+        float breakBoardStockValue = Mathf.Ceil(boardStockValue / 2);
+        Debug.Log("Stock Splite nilia : " + breakBoardStockValue);
+
+        // pengecekan value saham board terakait
+        if (stockSplitIsDone != true)
+        {
+            bool isCrash = false;
+            // cek apakah ada crash kebawah atau keatas
+            if (breakBoardStockValue < boardScript.stockCoordinates[0].value)
+            {
+                boardScript.currentStockCoordinate = boardScript.stockCoordinates[0].index - 1;
+                isCrash = true;
+                stockSplitIsDone = true;
+            } else if (breakBoardStockValue > boardScript.stockCoordinates[boardScript.stockCoordinates.Count - 1].value)
+            {
+                boardScript.currentStockCoordinate = boardScript.stockCoordinates[boardScript.stockCoordinates.Count - 1].index + 1;
+                isCrash = true;
+                stockSplitIsDone = true;
+            }
+
+            if (!isCrash)
+            {
+                // cek apakah nilai ada dan sesuai dengan value board
+                foreach (var coordinate in boardScript.stockCoordinates)
+                {
+                    // jika ada, ubah currentStockCoordinate board terkait
+                    if (breakBoardStockValue == coordinate.value)
+                    {
+                        boardScript.currentStockCoordinate = coordinate.index;
+                        stockSplitIsDone = true;
+                        break;
+                    }
+                }
+
+                // jika masih lolos, tambahkan 1 pada nilai value
+                if (!stockSplitIsDone)
+                {
+                    breakBoardStockValue += 1;
+                    foreach (var coordinate in boardScript.stockCoordinates)
+                    {
+                        // jika ada, ubah currentStockCoordinate board terkait
+                        if (breakBoardStockValue == coordinate.value)
+                        {
+                            boardScript.currentStockCoordinate = coordinate.index;
+                            stockSplitIsDone = true;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     // TRADE FEE EFFECT SECTION ==============================================================================================

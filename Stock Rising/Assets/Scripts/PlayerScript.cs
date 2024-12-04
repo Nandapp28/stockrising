@@ -82,6 +82,10 @@ public class PlayerScript : MonoBehaviour
     {
         SetInitialize();
         CountActionCards();
+        if (actionCardsOwned.Count != 0)
+        {
+            Debug.Log("Ini adalah objek kartu aksi yang disimpan = " + actionCardsOwned[0].textureName);
+        }
     }
 
     void SetInitialize()
@@ -107,12 +111,15 @@ public class PlayerScript : MonoBehaviour
     {
         public string cardSectorColor { get; set; }
         public GameObject actionCardObj { get; set; }
+
+        public string textureName { get; set; }
     }
 
-    public void AddActionCard(string sectorColor, GameObject cardObj)
+    public void AddActionCard(string sectorColor, string textureName)
     {
         // Buat objek kartu baru dan tambahkan ke daftar
-        ActionCardOwned newCard = new ActionCardOwned { cardSectorColor = sectorColor, actionCardObj = cardObj };
+        //ActionCardOwned newCard = new ActionCardOwned { cardSectorColor = sectorColor, actionCardObj = cardObj };
+        ActionCardOwned newCard = new ActionCardOwned { cardSectorColor = sectorColor, textureName = textureName  };
         actionCardsOwned.Add(newCard);
     }
 
