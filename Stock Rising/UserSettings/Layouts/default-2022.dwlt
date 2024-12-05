@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1366
     height: 695
   m_ShowMode: 4
-  m_Title: Console
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 371}
   m_MaxSize: {x: 10000, y: 10000}
@@ -392,9 +392,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 30fbffff785a0000d65c0000
+      m_SelectedIDs: d65a0000
+      m_LastClickedID: 23254
+      m_ExpandedIDs: 30fbffffd65c0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -926,10 +926,10 @@ MonoBehaviour:
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 115}
+    scrollPos: {x: 0, y: 11}
     m_SelectedIDs: f85f0000
     m_LastClickedID: 24568
-    m_ExpandedIDs: 00000000d85f0000da5f0000dc5f0000f85f000000ca9a3b
+    m_ExpandedIDs: 00000000d85f0000da5f0000dc5f000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -982,8 +982,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: fc5c0000
-    m_LastClickedInstanceID: 23804
+    m_SelectedInstanceIDs: 101c0000
+    m_LastClickedInstanceID: 7184
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000da62000088610000a65900004e5a0000fc5a000074110000
     m_RenameOverlay:
@@ -1009,7 +1009,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 0}
+    m_ScrollPosition: {x: 0, y: 2}
     m_GridSize: 16
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 161
@@ -1083,7 +1083,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 23194
+  m_LastSelectedObjectID: 23254
 --- !u!114 &17
 MonoBehaviour:
   m_ObjectHideFlags: 52

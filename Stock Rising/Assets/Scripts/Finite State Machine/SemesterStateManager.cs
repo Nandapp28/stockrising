@@ -74,7 +74,25 @@ public class SemesterStateManager : MonoBehaviour
         state.EnterState(this);
     }
 
-    public int CheckPlayerOrder(int playerOrderReq)
+    public GameState SwitchPlayerState()
+    {
+        //playerState = state;
+        if (playerState == GameState.Player1Turn)
+        {
+            return GameState.Player2Turn;
+        } 
+        //else if (playerState == (GameState)1)
+        //{
+        //    return (GameState)2;
+        //}
+        //else if (playerState == (GameState)2)
+        //{
+        //    return (GameState)3;
+        //}
+        return GameState.Player1Turn;
+    }
+
+    public GameObject CheckPlayerOrder(int playerOrderReq)
     {
         foreach (var player in players)
         {
@@ -82,12 +100,12 @@ public class SemesterStateManager : MonoBehaviour
             PlayerScript playerScript = player.GetComponent<PlayerScript>();
             if (playerScript.playerOrder == playerOrderReq)
             {
-                return index;
+                return player;
             } else
             {
                 index += 1;
             }
         }
-        return -1;
+        return null;
     }
 }

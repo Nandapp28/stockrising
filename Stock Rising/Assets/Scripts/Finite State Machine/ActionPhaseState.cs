@@ -53,100 +53,121 @@ public class ActionPhaseState : SemesterBaseState
         {
             SetInitialize(semester);
         }
+
+        // player state disini
         switch (semester.playerState)
         {
             case GameState.Player1Turn:
-                Debug.Log("Player 1's Turn");
-                player = semester.players[semester.CheckPlayerOrder(1)]; // mencari player urutan pertama 
-                PlayerScript playerScript = player.GetComponent<PlayerScript>();
+                player = semester.CheckPlayerOrder(1); // mencari player urutan pertama
+                Debug.Log("Player 1's Turn" + "Sekarang adalah giliran " + player.name);
+                CoreActionPhase(semester);
+                break;
 
-                if (currentFx == "Flashbuy")
+            case GameState.Player2Turn:
+                player = semester.CheckPlayerOrder(2); // mencari player urutan kedua
+                Debug.Log("Player 2's Turn" + "Sekarang adalah giliran " + player.name);
+                CoreActionPhase(semester);
+                break;
+
+            case GameState.Player3Turn:
+                player = semester.CheckPlayerOrder(3); // mencari player urutan kedua
+                Debug.Log("Player 3's Turn" + "Sekarang adalah giliran " + player.name);
+                CoreActionPhase(semester);
+                break;
+
+            case GameState.PlayersStop:
+                Debug.Log("Player Stop... it's time to change the phase");
+                break;
+        }
+    }
+
+    private void CoreActionPhase(SemesterStateManager semester)
+    {
+        PlayerScript playerScript = player.GetComponent<PlayerScript>();
+
+        // jika sedang dalam efek tertentu ====================================================================
+        if (currentFx == "Flashbuy")
+        {
+            GameObject actionPhaseButton = GameObject.Find("Button Fase Aksi");
+            if (actionPhaseButton != null)
+            {
+                actionPhaseButton.transform.Find("Button Aktifkan Kartu").gameObject.SetActive(false);
+                actionPhaseButton.transform.Find("Button Simpan Kartu").localPosition = new Vector3(0, 0, 0);
+            }
+        }
+        else if (currentFx == "Insider Trade")
+        {
+            InsiderTrade(semester, savedActionCardTakenTexture);
+        }
+        else if (currentFx == "Stock Split")
+        {
+            StockSplit(semester, savedActionCardTakenTexture, playerScript);
+        }
+        else if (currentFx == "null")
+        {
+            if (flashbuyIsDone == true || insiderTradeIsDone == true || stockSplitIsDone == true)
+            {
+                semester.playerState = (GameState)1;
+                savedActionCardTakenTexture = null; // cuman ini // masalahnya disini
+            }
+        }
+
+        // jika kartu disimpan ==========================================================================================
+        if (semester.actionCardisSaved == true)
+        {
+            Debug.Log("Kartu Disimpan");
+            SaveActionCard(playerScript); // simpan kartu ke data player sesuai warna
+            semester.actionCardisSaved = false; // kembalikan actionCardisSaved ke false
+            actionCardAnim = actionCardManagerScript.cardTakenObj.GetComponent<Animator>(); // jalankan animasi menyimpan kartu
+            if (actionCardAnim != null)
+            {
+                actionCardAnim.SetTrigger("TrSaveCard");
+            }
+            // cek currentFx ============================================================================================
+            if (currentFx == "Flashbuy")
+            {
+                // cek apakah sudah simpan kartu 2 kali?
+                if (indexFx != 1)
                 {
+                    indexFx += 1;
+                }
+                else
+                {
+                    currentFx = "null"; // set kembali ke null
                     GameObject actionPhaseButton = GameObject.Find("Button Fase Aksi");
                     if (actionPhaseButton != null)
                     {
-                        actionPhaseButton.transform.Find("Button Aktifkan Kartu").gameObject.SetActive(false);
-                        actionPhaseButton.transform.Find("Button Simpan Kartu").localPosition = new Vector3(0, 0, 0);
+                        actionPhaseButton.transform.Find("Button Aktifkan Kartu").gameObject.SetActive(true);
+                        actionPhaseButton.transform.Find("Button Simpan Kartu").localPosition = new Vector3(128, 0, 0);
                     }
-                } 
-                else if (currentFx == "Insider Trade")
-                {
-                    InsiderTrade(semester, savedActionCardTakenTexture);
-                } 
-                else if (currentFx == "Stock Split")
-                {
-                    StockSplit(semester, savedActionCardTakenTexture, playerScript);
+                    semester.playerState = (GameState)1;
+                    flashbuyIsDone = true;
                 }
-                else if ( currentFx == "null")
-                {
-                    if (flashbuyIsDone == true || insiderTradeIsDone == true || stockSplitIsDone == true)
-                    {
-                        semester.playerState = (GameState)1;
-                        savedActionCardTakenTexture = null;
-                    }
-                }
+            }
+            else
+            {
+                semester.playerState = (GameState)1; // ganti state pemain
+            }
+        }
 
-                // jika kartu disimpan ==========================================================================================
-                if (semester.actionCardisSaved == true)
-                {
-                    SaveActionCard(playerScript); // simpan kartu ke data player sesuai warna
-                    semester.actionCardisSaved = false; // kembalikan actionCardisSaved ke false
-                    actionCardAnim = actionCardManagerScript.cardTakenObj.GetComponent<Animator>(); // jalankan animasi menyimpan kartu
-                    if (actionCardAnim != null)
-                    {
-                        actionCardAnim.SetTrigger("TrSaveCard");
-                    }
-                    // cek currentFx ============================================================================================
-                    if (currentFx == "Flashbuy")
-                    {
-                        // cek apakah sudah simpan kartu 2 kali?
-                        if (indexFx != 1) 
-                        {
-                            indexFx += 1; 
-                        } else
-                        {
-                            currentFx = "null"; // set kembali ke null
-                            GameObject actionPhaseButton = GameObject.Find("Button Fase Aksi");
-                            if (actionPhaseButton != null)
-                            {
-                                actionPhaseButton.transform.Find("Button Aktifkan Kartu").gameObject.SetActive(true);
-                                actionPhaseButton.transform.Find("Button Simpan Kartu").localPosition = new Vector3(128, 0, 0);
-                            }
-                            //semester.playerState = (GameState)1;
-                            flashbuyIsDone = true;
-                        }
-                    } else
-                    {
-                        semester.playerState = (GameState)1; // ganti state pemain
-                    }
-                }
+        // jika kartu diaktifkan ========================================================================================
+        if (semester.actionCardisActivated == true) // ini sifatnya sekali klik
+        {
+            Debug.Log("Kartu Diaktifkan!!!");
+            semester.actionCardisActivated = false; // kembalikan actionCardisActivated ke false
+            actionCardAnim = actionCardManagerScript.cardTakenObj.GetComponent<Animator>(); // jalankan animasi menyimpan kartu
+            if (actionCardAnim != null)
+            {
+                savedActionCardTakenTexture = actionCardManagerScript.cardTakenObj.GetComponent<Renderer>().material.mainTexture.name;
+                actionCardAnim.SetTrigger("TrSaveCard");
+            }
+        }
 
-                // jika kartu diaktifkan ========================================================================================
-                if (semester.actionCardisActivated == true) // ini sifatnya sekali klik
-                {
-                    semester.actionCardisActivated = false; // kembalikan actionCardisActivated ke false
-                    actionCardAnim = actionCardManagerScript.cardTakenObj.GetComponent<Animator>(); // jalankan animasi menyimpan kartu
-                    if (actionCardAnim != null)
-                    {
-                        savedActionCardTakenTexture = actionCardManagerScript.cardTakenObj.GetComponent<Renderer>().material.mainTexture.name;
-                        actionCardAnim.SetTrigger("TrSaveCard");
-                    }
-                }
-
-                // jika kartu diaktifkan dan objek kartu yang diaktifkan telah dihancurkan
-                if (semester.actionCardisActivated == false && actionCardManagerScript.cardTakenIsDestroy == true) // sekali main
-                {
-                    actionCardManagerScript.cardTakenIsDestroy = false;
-                    ActionCardDB(playerScript, semester); // akses Dictionary kartu aksi, dan jalankan fungsi yang sesuai
-                }
-
-                break;
-            case GameState.Player2Turn:
-                Debug.Log("Player 2's Turn");
-                break;
-            case GameState.Player3Turn:
-                Debug.Log("Player 3's Turn");
-                break;
+        // jika kartu diaktifkan dan objek kartu yang diaktifkan telah dihancurkan
+        if (semester.actionCardisActivated == false && actionCardManagerScript.cardTakenIsDestroy == true) // sekali main
+        {
+            actionCardManagerScript.cardTakenIsDestroy = false;
+            ActionCardDB(playerScript, semester); // akses Dictionary kartu aksi, dan jalankan fungsi yang sesuai
         }
     }
 

@@ -82,10 +82,10 @@ public class PlayerScript : MonoBehaviour
     {
         SetInitialize();
         CountActionCards();
-        if (actionCardsOwned.Count != 0)
-        {
-            Debug.Log("Ini adalah objek kartu aksi yang disimpan = " + actionCardsOwned[0].textureName);
-        }
+        //if (actionCardsOwned.Count != 0)
+        //{
+        //    Debug.Log("Ini adalah objek kartu aksi yang disimpan = " + actionCardsOwned[0].textureName);
+        //}
     }
 
     void SetInitialize()
