@@ -49,6 +49,9 @@ public class SemesterStateManager : MonoBehaviour
     public bool actionCardisActivated = false;
     public GameObject rumorCardButton;
 
+    // Sales Phase
+    public SalesPhaseState salesPhase = new SalesPhaseState();
+
     //debug
     //public BPPlayersStopStateDebug bPlayersStopStateDebug;
 
@@ -76,20 +79,19 @@ public class SemesterStateManager : MonoBehaviour
 
     public GameState SwitchPlayerState()
     {
-        //playerState = state;
-        if (playerState == GameState.Player1Turn)
+        if (playerState == (GameState)0)
         {
-            return GameState.Player2Turn;
-        } 
-        //else if (playerState == (GameState)1)
-        //{
-        //    return (GameState)2;
-        //}
-        //else if (playerState == (GameState)2)
-        //{
-        //    return (GameState)3;
-        //}
-        return GameState.Player1Turn;
+            return playerState = (GameState)1;
+        }
+        else if (playerState == (GameState)1)
+        {
+            return playerState = (GameState)2;
+        }
+        else if (playerState == (GameState)2)
+        {
+            return playerState = (GameState)3;
+        }
+        return playerState = (GameState)0;
     }
 
     public GameObject CheckPlayerOrder(int playerOrderReq)

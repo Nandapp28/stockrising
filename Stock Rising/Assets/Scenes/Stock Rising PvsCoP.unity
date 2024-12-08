@@ -345,7 +345,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 643e54909d2844140b08ec46b327029f, type: 3}
       propertyPath: m_TagString
-      value: Action Card
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -700,7 +700,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8222145016405300880, guid: b3959d3d2e871f94dbe69cd962e2ee2f, type: 3}
       propertyPath: playerOrder
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9022091994180777825, guid: b3959d3d2e871f94dbe69cd962e2ee2f, type: 3}
       propertyPath: m_Name
@@ -7166,7 +7166,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8222145016405300880, guid: b3959d3d2e871f94dbe69cd962e2ee2f, type: 3}
       propertyPath: playerOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9022091994180777825, guid: b3959d3d2e871f94dbe69cd962e2ee2f, type: 3}
       propertyPath: m_Name
@@ -8168,23 +8168,17 @@ MonoBehaviour:
   - {fileID: 2800000, guid: b0e9c5baad1339f4099dbae98e45d632, type: 3}
   - {fileID: 2800000, guid: fac57a5cfe5af32468d9e59d7a154203, type: 3}
   - {fileID: 2800000, guid: acaeec93096e78943aab0f39df2c7b81, type: 3}
-  - {fileID: 2800000, guid: c31a98078ab5364488f49e5d5154d1c7, type: 3}
-  - {fileID: 2800000, guid: ff1d95454f885f94e886dce1913f96fe, type: 3}
   - {fileID: 2800000, guid: 27e2dd5af0c44b5429107cf88a0dc9c6, type: 3}
   - {fileID: 2800000, guid: 2a6eb6249bebc994b993075a35a6a3f7, type: 3}
   - {fileID: 2800000, guid: 9f7e83d98f285344d9b1a83bf0f52a7b, type: 3}
-  - {fileID: 2800000, guid: b92450527d09afb46be645c8d4dbfd3f, type: 3}
-  - {fileID: 2800000, guid: 1d08b18979e0aff44b3bb87ce3041cc3, type: 3}
   - {fileID: 2800000, guid: d6a55a4081b59cd428692dd5cbe93319, type: 3}
   - {fileID: 2800000, guid: f509c4475aa8818458ef0b6a5d5d58ce, type: 3}
   - {fileID: 2800000, guid: 0519917a2b62bd84f99be022423dddec, type: 3}
-  - {fileID: 2800000, guid: 27fd64e4a8695754cb8fc88b1cb4168a, type: 3}
-  - {fileID: 2800000, guid: b860cebeb7cd4cb4ebe32fde240ab4ce, type: 3}
   - {fileID: 2800000, guid: ffd4a9c5515c74f4d99047f280114df1, type: 3}
   - {fileID: 2800000, guid: 099e3695aa46e634794bf43d020183b4, type: 3}
   - {fileID: 2800000, guid: f4deebc3958bae643b70fc37dcd4059c, type: 3}
-  - {fileID: 2800000, guid: 08be19cc2b66ffe4cb597dfce5c98c97, type: 3}
-  - {fileID: 2800000, guid: b855690ff09876e488944eb1e62b82d6, type: 3}
+  actionCards: []
+  actionCardsIsSpawned: 0
   actionCardPrefab: {fileID: 8760245283308627969, guid: 417b864d7b0e25b43a928ece35f0766b, type: 3}
   spawnParent: {fileID: 378548483}
   state: {fileID: 342123181}
@@ -10179,7 +10173,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8222145016405300880, guid: b3959d3d2e871f94dbe69cd962e2ee2f, type: 3}
       propertyPath: playerOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9022091994180777825, guid: b3959d3d2e871f94dbe69cd962e2ee2f, type: 3}
       propertyPath: m_Name

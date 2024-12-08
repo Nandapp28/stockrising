@@ -5,7 +5,8 @@ using UnityEngine;
 public class ActionCardManager : MonoBehaviour
 {
     public Texture[] actionCardTextures;
-    GameObject[] actionCards;
+    public GameObject[] actionCards;
+    public bool actionCardsIsSpawned = false;
     public GameObject actionCardPrefab;
     public Transform spawnParent;
 
@@ -17,6 +18,12 @@ public class ActionCardManager : MonoBehaviour
     public bool cardTaken = false;
     public bool cardTakenIsDestroy = false;
     public GameObject cardTakenObj;
+
+
+    private void OnDisable()
+    {
+        actionCardsIsSpawned = false;
+    }
 
     void OnEnable()
     {
@@ -63,6 +70,7 @@ public class ActionCardManager : MonoBehaviour
         {
 
         }
+        actionCardsIsSpawned = true;
     }
 
     void RandomizeActionCard()

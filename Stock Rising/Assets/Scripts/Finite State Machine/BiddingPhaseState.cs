@@ -17,6 +17,7 @@ public class BiddingPhaseState : SemesterBaseState
     public override void EnterState(SemesterStateManager semester)
     {
         semester.phaseCount += 1;
+        semester.phaseName = "Fase Bidding";
         semester.phaseTitleParent.gameObject.SetActive(true);
     }
 

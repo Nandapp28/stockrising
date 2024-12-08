@@ -367,6 +367,7 @@
 "Assets/Scripts/Finite State Machine/ActionPhaseState.cs"
 "Assets/Scripts/Finite State Machine/BiddingPhaseState.cs"
 "Assets/Scripts/Finite State Machine/FirstSemesterState.cs"
+"Assets/Scripts/Finite State Machine/SalesPhaseState.cs"
 "Assets/Scripts/Finite State Machine/SecondSemesterState.cs"
 "Assets/Scripts/Finite State Machine/SemesterBaseState.cs"
 "Assets/Scripts/Finite State Machine/SemesterStateManager.cs"
