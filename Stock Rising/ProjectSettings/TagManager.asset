@@ -5,6 +5,14 @@ TagManager:
   serializedVersion: 2
   tags:
   - PhaseTitle
+  - Action Card
+  - Camera Middle Point
+  - State Manager
+  - Action Card Manager
+  - Rumor Card
+  - Rumor Card Manager
+  - 'Button Fase Aksi: Aktifkan'
+  - Divination Token
   layers:
   - Default
   - TransparentFX

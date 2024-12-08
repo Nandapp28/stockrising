@@ -1,18 +1,24 @@
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using UnityEngine;
 using static BiddingPhaseState;
 
 public class BiddingPhaseState : SemesterBaseState
 {
-    float timeCountDown = 2.0f;
+    float timeEnterCD = 2.0f;
+    float timeSortCD = 2.0f;
+    float timeNextStateCD = 2.0f;
+
     PlayerScript currentPlayerScript;
     List<PlayerOrderNum> playerOrderNums = new List<PlayerOrderNum>();
 
 
     public override void EnterState(SemesterStateManager semester)
     {
-        semester.biddingTitle.gameObject.SetActive(true);
+        semester.phaseCount += 1;
+        semester.phaseName = "Fase Bidding";
+        semester.phaseTitleParent.gameObject.SetActive(true);
     }
 
     public override void UpdateState(SemesterStateManager semester)
@@ -70,13 +76,35 @@ public class BiddingPhaseState : SemesterBaseState
                 break;
             case GameState.PlayersStop: 
                 Debug.Log("Players Stop");
+
+                semester.rollDiceButton.enabled = false;
+
                 CheckDuplicates(semester);
                 playerOrderNums = playerOrderNums.OrderByDescending(pair => pair.orderNum).ToList();
 
-                for (int i = 0; i < playerOrderNums.Count; i++)
+                // setelah player terakhir lempar dadu, kasih jeda 2 detik
+                if (timeSortCD >= 0)
                 {
-                    PlayerScript playerScript = playerOrderNums[i].playerGameObject.GetComponent<PlayerScript>();
-                    playerScript.playerOrder = i + 1;
+                    timeSortCD -= Time.deltaTime;
+                }
+                else
+                {
+                    // set urutan player
+                    for (int i = 0; i < playerOrderNums.Count; i++)
+                    {
+                        PlayerScript playerScript = playerOrderNums[i].playerGameObject.GetComponent<PlayerScript>();
+                        playerScript.playerOrder = i + 1;
+                    }
+                    // deactivate the dices and button
+                    semester.dices.SetActive(false);
+                    semester.rollDiceButton.gameObject.SetActive(false);
+                    if (timeNextStateCD >= 0)
+                    {
+                        timeNextStateCD -= Time.deltaTime;
+                    } else
+                    {
+                        semester.SwitchState(semester.actionPhase);
+                    }
                 }
                 break;
 
@@ -85,13 +113,15 @@ public class BiddingPhaseState : SemesterBaseState
 
     void SetInitialize(SemesterStateManager semester)
     {
-        if (timeCountDown >= 0)
+        if (timeEnterCD >= 0)
         {
-            timeCountDown -= Time.deltaTime;
+            timeEnterCD -= Time.deltaTime;
         }
         else
         {
-            semester.biddingTitle.gameObject.SetActive(false);
+            semester.phaseTitleParent.gameObject.SetActive(false);
+
+            // objek Bidding Phase
             semester.dices.SetActive(true);
             semester.rollDiceButton.gameObject.SetActive(true);
         }
