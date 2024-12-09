@@ -12,11 +12,17 @@ public class SalesPhaseState : SemesterBaseState
     float rotateSpeed = 2.0f;
     bool isMoving = false;
 
+    GameObject player;
+    ActionCardManager actionCardManagerScript;
+
     public override void EnterState(SemesterStateManager semester)
     {
         semester.phaseCount += 1;
         semester.phaseName = "Fase Penjualan";
         semester.phaseTitleParent.gameObject.SetActive(true);
+
+        // referensi ke script ActionCardManager
+        actionCardManagerScript = semester.actionCardManagerObj.GetComponent<ActionCardManager>();
     }
 
     public override void UpdateState(SemesterStateManager semester)
@@ -25,6 +31,30 @@ public class SalesPhaseState : SemesterBaseState
         if (setInitIndex == 0)
         {
             SetInitialize(semester);
+        }
+
+        switch (semester.playerState)
+        {
+            case GameState.Player1Turn:
+                Debug.Log("Player 1's Turn " + "Sekarang adalah giliran ");
+                player = semester.CheckPlayerOrder(1); // mencari urutan player
+
+                actionCardManagerScript.currentPlayerScript = player.GetComponent<PlayerScript>();
+                semester.actionCardsObj.SetActive(true);
+                semester.actionCardManagerObj.SetActive(true);
+
+                break;
+
+            case GameState.Player2Turn:
+                Debug.Log("Player 2's Turn " + "Sekarang adalah giliran ");
+                break;
+
+            case GameState.Player3Turn:
+                Debug.Log("Player 3's Turn " + "Sekarang adalah giliran ");
+                break;
+
+            case GameState.PlayersStop:
+                break;
         }
     }
 

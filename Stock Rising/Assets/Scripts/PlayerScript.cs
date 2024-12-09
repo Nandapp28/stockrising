@@ -110,7 +110,7 @@ public class PlayerScript : MonoBehaviour
     public class ActionCardOwned
     {
         public string cardSectorColor { get; set; }
-        public GameObject actionCardObj { get; set; }
+        public GameObject actionCardObj { get; set; } // sepertinya di disable tak masalah
 
         public string textureName { get; set; }
     }
