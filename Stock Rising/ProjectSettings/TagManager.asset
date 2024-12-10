@@ -13,6 +13,10 @@ TagManager:
   - Rumor Card Manager
   - 'Button Fase Aksi: Aktifkan'
   - Divination Token
+  - Red Board
+  - Orange Board
+  - Blue Board
+  - Green Board
   layers:
   - Default
   - TransparentFX

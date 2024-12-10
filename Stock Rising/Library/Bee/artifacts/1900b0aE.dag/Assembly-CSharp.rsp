@@ -377,6 +377,8 @@
 "Assets/Scripts/Rumor Phase Mechanic/RumorCardButtonScript.cs"
 "Assets/Scripts/Rumor Phase Mechanic/RumorCardManagerScript.cs"
 "Assets/Scripts/Rumor Phase Mechanic/RumorCardScript.cs"
+"Assets/Scripts/Sales Phase Mechanic/SectorSalesButtonScript.cs"
+"Assets/Scripts/Sales Phase Mechanic/SectorSalesScript.cs"
 "Assets/Scripts/TransparantBackgroundScript.cs"
 "Assets/TestDetectScript.cs"
 "Assets/Trial/GameManager2.cs"

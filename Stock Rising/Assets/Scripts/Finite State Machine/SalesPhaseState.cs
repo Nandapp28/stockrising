@@ -12,6 +12,9 @@ public class SalesPhaseState : SemesterBaseState
     float rotateSpeed = 2.0f;
     bool isMoving = false;
 
+    // button fase aksi needed
+    
+
     GameObject player;
     ActionCardManager actionCardManagerScript;
 
@@ -31,30 +34,50 @@ public class SalesPhaseState : SemesterBaseState
         if (setInitIndex == 0)
         {
             SetInitialize(semester);
-        }
-
-        switch (semester.playerState)
+        } else
         {
-            case GameState.Player1Turn:
-                Debug.Log("Player 1's Turn " + "Sekarang adalah giliran ");
-                player = semester.CheckPlayerOrder(1); // mencari urutan player
+            switch (semester.playerState)
+            {
+                case GameState.Player1Turn:
+                    Debug.Log("Player 1's Turn " + "Sekarang adalah giliran ");
+                    player = semester.CheckPlayerOrder(1); // mencari urutan player, output GameObject
+                    PlayerScript playerScript = player.GetComponent<PlayerScript>();
 
-                actionCardManagerScript.currentPlayerScript = player.GetComponent<PlayerScript>();
-                semester.actionCardsObj.SetActive(true);
-                semester.actionCardManagerObj.SetActive(true);
+                    // cek apakah player punya kartu saham atau tidak
+                    if (playerScript.actionCMerah + playerScript.actionCOranye +
+                        playerScript.actionCBiru + playerScript.actionCHijau != 0)
+                    {
+                        semester.salesPhaseButton.SetActive(true);
+                        if (semester.isSalesPhaseSkip == false)
+                        {
+                            Debug.Log("Proses menjual kartu");
 
-                break;
+                        }
+                        else
+                        {
+                            Debug.Log("Ganti Pemain");
+                            //semester.isSalesPhaseSkip = false;
+                        }
 
-            case GameState.Player2Turn:
-                Debug.Log("Player 2's Turn " + "Sekarang adalah giliran ");
-                break;
+                    }
+                    else
+                    {
+                        Debug.Log("Ganti Pemain");
+                    }
 
-            case GameState.Player3Turn:
-                Debug.Log("Player 3's Turn " + "Sekarang adalah giliran ");
-                break;
+                    break;
 
-            case GameState.PlayersStop:
-                break;
+                case GameState.Player2Turn:
+                    Debug.Log("Player 2's Turn " + "Sekarang adalah giliran ");
+                    break;
+
+                case GameState.Player3Turn:
+                    Debug.Log("Player 3's Turn " + "Sekarang adalah giliran ");
+                    break;
+
+                case GameState.PlayersStop:
+                    break;
+            }
         }
     }
 
@@ -70,14 +93,16 @@ public class SalesPhaseState : SemesterBaseState
             semester.phaseTitleParent.gameObject.SetActive(false);
 
             // objek Action Phase
-            isMoving = true;
-            MoveCamera(semester.mainCamera, semester.cameraPost2);
-            semester.transparantBgObj.SetActive(true);
-            if (isMoving == false)
-            {
-                setInitIndex = 1;
-                timeEnterCD = 2.0f;
-            }
+            //isMoving = true;
+            //MoveCamera(semester.mainCamera, semester.cameraPost2);
+            //semester.transparantBgObj.SetActive(true);
+            setInitIndex = 1;
+            timeEnterCD = 2.0f;
+            //if (isMoving == false)
+            //{
+            //    //setInitIndex = 1;
+            //    //timeEnterCD = 2.0f;
+            //}
         }
     }
 
