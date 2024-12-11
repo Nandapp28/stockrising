@@ -117,6 +117,7 @@ public class ActionPhaseState : SemesterBaseState
                     {
                         Debug.Log("Ganti Fase Penjualan");
                         semester.SwitchState(semester.salesPhase);
+                        semester.SwitchPlayerState();
                     }
                     
                 } else
