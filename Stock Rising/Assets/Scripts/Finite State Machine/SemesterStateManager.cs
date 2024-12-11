@@ -53,6 +53,7 @@ public class SemesterStateManager : MonoBehaviour
     public SalesPhaseState salesPhase = new SalesPhaseState();
     public GameObject salesPhaseButton;
     public bool isSalesPhaseSkip = false;
+    public bool isSalesPhaseSell = false;
 
     //debug
     //public BPPlayersStopStateDebug bPlayersStopStateDebug;

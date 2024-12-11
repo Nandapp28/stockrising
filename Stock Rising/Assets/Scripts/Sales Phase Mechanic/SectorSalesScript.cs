@@ -79,6 +79,7 @@ public class SectorSalesScript : MonoBehaviour
                 playerScript = null;
             }
         }
+        soldCardsTotal = 0;
     }
 
     private void OnDisable()

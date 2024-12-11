@@ -6,6 +6,7 @@ public class SalesPhaseState : SemesterBaseState
 {
     int setInitIndex = 0;
     float timeEnterCD = 2.0f;
+    float timeCoreSalesPhaseCD = 30.0f;
 
     // main camera
     float moveSpeed = 2.0f;
@@ -41,43 +42,93 @@ public class SalesPhaseState : SemesterBaseState
                 case GameState.Player1Turn:
                     Debug.Log("Player 1's Turn " + "Sekarang adalah giliran ");
                     player = semester.CheckPlayerOrder(1); // mencari urutan player, output GameObject
-                    PlayerScript playerScript = player.GetComponent<PlayerScript>();
-
-                    // cek apakah player punya kartu saham atau tidak
-                    if (playerScript.actionCMerah + playerScript.actionCOranye +
-                        playerScript.actionCBiru + playerScript.actionCHijau != 0)
+                    if (timeCoreSalesPhaseCD >= 0)
                     {
-                        semester.salesPhaseButton.SetActive(true);
-                        if (semester.isSalesPhaseSkip == false)
-                        {
-                            Debug.Log("Proses menjual kartu");
-
-                        }
-                        else
-                        {
-                            Debug.Log("Ganti Pemain");
-                            //semester.isSalesPhaseSkip = false;
-                        }
-
-                    }
-                    else
+                        timeCoreSalesPhaseCD -= Time.deltaTime;
+                        CoreSalesPhase(semester);
+                    } else
                     {
                         Debug.Log("Ganti Pemain");
+                        timeCoreSalesPhaseCD = 30.0f;
+                        semester.salesPhaseButton.SetActive(false);
+                        semester.SwitchPlayerState();
                     }
-
                     break;
 
                 case GameState.Player2Turn:
                     Debug.Log("Player 2's Turn " + "Sekarang adalah giliran ");
+                    player = semester.CheckPlayerOrder(2); // mencari urutan player, output GameObject
+                    if (timeCoreSalesPhaseCD >= 0)
+                    {
+                        timeCoreSalesPhaseCD -= Time.deltaTime;
+                        CoreSalesPhase(semester);
+                    }
+                    else
+                    {
+                        Debug.Log("Ganti Pemain");
+                        timeCoreSalesPhaseCD = 30.0f;
+                        semester.salesPhaseButton.SetActive(false);
+                        semester.SwitchPlayerState();
+                    }
                     break;
 
                 case GameState.Player3Turn:
                     Debug.Log("Player 3's Turn " + "Sekarang adalah giliran ");
+                    player = semester.CheckPlayerOrder(3); // mencari urutan player, output GameObject
+                    if (timeCoreSalesPhaseCD >= 0)
+                    {
+                        timeCoreSalesPhaseCD -= Time.deltaTime;
+                        CoreSalesPhase(semester);
+                    }
+                    else
+                    {
+                        Debug.Log("Ganti Pemain");
+                        timeCoreSalesPhaseCD = 30.0f;
+                        semester.salesPhaseButton.SetActive(false);
+                        semester.SwitchPlayerState();
+                    }
                     break;
 
                 case GameState.PlayersStop:
                     break;
             }
+        }
+    }
+
+    private void CoreSalesPhase(SemesterStateManager semester)
+    {
+        PlayerScript playerScript = player.GetComponent<PlayerScript>();
+
+        // cek apakah player punya kartu saham atau tidak
+        if (playerScript.actionCMerah + playerScript.actionCOranye +
+            playerScript.actionCBiru + playerScript.actionCHijau != 0)
+        {
+            semester.salesPhaseButton.SetActive(true);
+            if (semester.isSalesPhaseSkip == true)
+            {
+                Debug.Log("Ganti Pemain");
+                semester.isSalesPhaseSkip = false;
+                semester.salesPhaseButton.SetActive(false);
+                semester.SwitchPlayerState();
+            }
+            else
+            {
+                Debug.Log("Proses menjual kartu");
+            }
+
+            if (semester.isSalesPhaseSell == true)
+            {
+                Debug.Log("Ganti Pemain");
+                semester.isSalesPhaseSell = false;
+                semester.salesPhaseButton.SetActive(false);
+                semester.SwitchPlayerState();
+            }
+        }
+        else
+        {
+            Debug.Log("Ganti Pemain");
+            semester.salesPhaseButton.SetActive(false);
+            semester.SwitchPlayerState();
         }
     }
 
@@ -91,18 +142,8 @@ public class SalesPhaseState : SemesterBaseState
         else
         {
             semester.phaseTitleParent.gameObject.SetActive(false);
-
-            // objek Action Phase
-            //isMoving = true;
-            //MoveCamera(semester.mainCamera, semester.cameraPost2);
-            //semester.transparantBgObj.SetActive(true);
             setInitIndex = 1;
             timeEnterCD = 2.0f;
-            //if (isMoving == false)
-            //{
-            //    //setInitIndex = 1;
-            //    //timeEnterCD = 2.0f;
-            //}
         }
     }
 
