@@ -6,7 +6,7 @@ public class FirstSemesterState : SemesterBaseState
     public override void EnterState(SemesterStateManager semester)
     {
         semester.semesterCount += 1;
-        semester.SwitchState(semester.actionPhase);
+        semester.SwitchState(semester.biddingPhase);
     }
 
     public override void UpdateState(SemesterStateManager semester)

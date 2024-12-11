@@ -37,6 +37,7 @@ public class SalesPhaseState : SemesterBaseState
             SetInitialize(semester);
         } else
         {
+            semester.salesPhaseTimerText.text = ((int)timeCoreSalesPhaseCD).ToString();
             switch (semester.playerState)
             {
                 case GameState.Player1Turn:
@@ -49,8 +50,8 @@ public class SalesPhaseState : SemesterBaseState
                     } else
                     {
                         Debug.Log("Ganti Pemain");
-                        timeCoreSalesPhaseCD = 30.0f;
                         semester.salesPhaseButton.SetActive(false);
+                        timeCoreSalesPhaseCD = 30.0f;
                         semester.SwitchPlayerState();
                     }
                     break;
@@ -66,8 +67,8 @@ public class SalesPhaseState : SemesterBaseState
                     else
                     {
                         Debug.Log("Ganti Pemain");
-                        timeCoreSalesPhaseCD = 30.0f;
                         semester.salesPhaseButton.SetActive(false);
+                        timeCoreSalesPhaseCD = 30.0f;
                         semester.SwitchPlayerState();
                     }
                     break;
@@ -83,13 +84,16 @@ public class SalesPhaseState : SemesterBaseState
                     else
                     {
                         Debug.Log("Ganti Pemain");
-                        timeCoreSalesPhaseCD = 30.0f;
                         semester.salesPhaseButton.SetActive(false);
+                        timeCoreSalesPhaseCD = 30.0f;
                         semester.SwitchPlayerState();
                     }
                     break;
 
                 case GameState.PlayersStop:
+                    Debug.Log("Ganti Fase Rumor");
+                    semester.SwitchState(semester.rumorPhase);
+                    semester.SwitchPlayerState();
                     break;
             }
         }
@@ -109,6 +113,7 @@ public class SalesPhaseState : SemesterBaseState
                 Debug.Log("Ganti Pemain");
                 semester.isSalesPhaseSkip = false;
                 semester.salesPhaseButton.SetActive(false);
+                timeCoreSalesPhaseCD = 30.0f;
                 semester.SwitchPlayerState();
             }
             else
@@ -121,6 +126,7 @@ public class SalesPhaseState : SemesterBaseState
                 Debug.Log("Ganti Pemain");
                 semester.isSalesPhaseSell = false;
                 semester.salesPhaseButton.SetActive(false);
+                timeCoreSalesPhaseCD = 30.0f;
                 semester.SwitchPlayerState();
             }
         }
@@ -128,6 +134,7 @@ public class SalesPhaseState : SemesterBaseState
         {
             Debug.Log("Ganti Pemain");
             semester.salesPhaseButton.SetActive(false);
+            timeCoreSalesPhaseCD = 30.0f;
             semester.SwitchPlayerState();
         }
     }

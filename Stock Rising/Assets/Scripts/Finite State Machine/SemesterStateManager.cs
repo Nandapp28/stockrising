@@ -54,6 +54,10 @@ public class SemesterStateManager : MonoBehaviour
     public GameObject salesPhaseButton;
     public bool isSalesPhaseSkip = false;
     public bool isSalesPhaseSell = false;
+    public TextMeshProUGUI salesPhaseTimerText;
+
+    // Rumor Phase
+    public RumorPhaseState rumorPhase = new RumorPhaseState();
 
     //debug
     //public BPPlayersStopStateDebug bPlayersStopStateDebug;
