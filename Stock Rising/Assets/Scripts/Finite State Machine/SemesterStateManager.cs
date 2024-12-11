@@ -117,4 +117,9 @@ public class SemesterStateManager : MonoBehaviour
         }
         return null;
     }
+
+    public void DestroyObject(GameObject obj)
+    {
+        Destroy(obj);
+    }
 }

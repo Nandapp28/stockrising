@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,8 +13,12 @@ public class RumorPhaseState : SemesterBaseState
     float rotateSpeed = 2.0f;
     bool isMoving = false;
 
+    float timeOpenRumorCard = 5.0f;
+
     GameObject board;
     BoardScript boardScript;
+    string rumorCardTextureName;
+    bool isTextureNameSaved = false;
 
     public override void EnterState(SemesterStateManager semester)
     {
@@ -47,9 +52,41 @@ public class RumorPhaseState : SemesterBaseState
                         isMoving = false;
                     }
 
-                    // flip kartu
-                    // angkat kartu
+                    DelaySession1();
+
+                    if (delaySession1Done == true)
+                    {
+                        // referensi ke kartu rumor paling atas
+                        Transform rumorCards = board.transform.Find("Rumor Cards");
+                        int rumorCardsTotal = rumorCards.childCount;
+                        GameObject rumorCard = rumorCards.Find("Rumor Card " + rumorCardsTotal).gameObject;
+                        GameObject card = rumorCard.transform.Find("Card").gameObject;
+                        RumorCardScript rumorCardScript = card.GetComponent<RumorCardScript>();
+
+                        // angkat kartu selama 10 detik
+                        if (timeOpenRumorCard >= 0)
+                        {
+                            timeOpenRumorCard -= Time.deltaTime;
+                            rumorCardScript.isTaked = true;
+                        }
+                        else
+                        {
+                            if (isTextureNameSaved == false)
+                            {
+                                rumorCardTextureName = card.GetComponent<Renderer>().material.mainTexture.name;
+                                isTextureNameSaved = true;
+                                rumorCardScript.isTaked = false;
+                                rumorCard.SetActive(false);
+                            }
+                        }
+                    }
+
                     // terapkan efek
+                    if (isTextureNameSaved == true)
+                    {
+                        Debug.Log(rumorCardTextureName);
+                    }
+
                     break;
 
                 case GameState.Player2Turn:
@@ -80,6 +117,48 @@ public class RumorPhaseState : SemesterBaseState
             setInitIndex = 1;
             timeEnterCD = 2.0f;
         }
+    }
+
+    private void RumorCardDB(PlayerScript playerScript, SemesterStateManager semester) // sekali main
+    {
+        // ambil nilai nama texture yang disimpan di variabel savedActionCardTakenTexture
+        string textureName = rumorCardTextureName;
+
+        // membuat dynamic dictionary
+        Dictionary<Func<string, bool>, Action> dynamicActions = new Dictionary<Func<string, bool>, Action>
+        {
+            { name => name.EndsWith("FB"), () => {
+                //FlashbuyFx();
+            } },
+            { name => name.EndsWith("IT"), () => {
+                //InsiderTradeFx();
+            } },
+        };
+
+        // Cari pola yang cocok
+        foreach (var entry in dynamicActions)
+        {
+            if (entry.Key(textureName)) // Panggil fungsi kondisi
+            {
+                entry.Value(); // Jalankan aksi
+                return;
+            }
+        }
+    }
+
+    float timeDelaySession1 = 2.5f;
+    bool delaySession1Done = false;
+    bool DelaySession1()
+    {
+        if (timeDelaySession1 >= 0)
+        {
+            timeDelaySession1 -= Time.deltaTime;
+        } else
+        {
+            return delaySession1Done = true;
+        }
+
+        return delaySession1Done = false;
     }
 
     void MoveCamera(Camera mainCam, GameObject camPost2)
