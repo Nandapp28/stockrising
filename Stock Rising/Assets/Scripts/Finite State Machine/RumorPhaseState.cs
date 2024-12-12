@@ -146,7 +146,7 @@ public class RumorPhaseState : SemesterBaseState
             if (semester.playerState == (GameState)3)
             {
                 Debug.Log("Ganti Fase Resolusi");
-                //semester.SwitchState(semester.rumorPhase);
+                semester.SwitchState(semester.resolutionPhase);
                 semester.SwitchPlayerState();
             } else
             {
