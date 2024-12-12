@@ -373,6 +373,7 @@
 "Assets/Scripts/Finite State Machine/SecondSemesterState.cs"
 "Assets/Scripts/Finite State Machine/SemesterBaseState.cs"
 "Assets/Scripts/Finite State Machine/SemesterStateManager.cs"
+"Assets/Scripts/Main Menu/MainMenuScript.cs"
 "Assets/Scripts/PhaseTitleScript.cs"
 "Assets/Scripts/PlayerScript.cs"
 "Assets/Scripts/Resolution Phase Mechanic/DivinationTokenManagerScript.cs"
