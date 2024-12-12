@@ -59,6 +59,9 @@ public class SemesterStateManager : MonoBehaviour
     // Rumor Phase
     public RumorPhaseState rumorPhase = new RumorPhaseState();
 
+    // Resolution Phase
+    public ResolutionPhaseState resolutionPhase = new ResolutionPhaseState();
+
     //debug
     //public BPPlayersStopStateDebug bPlayersStopStateDebug;
 
@@ -116,5 +119,10 @@ public class SemesterStateManager : MonoBehaviour
             }
         }
         return null;
+    }
+
+    public void DestroyObject(GameObject obj)
+    {
+        Destroy(obj);
     }
 }

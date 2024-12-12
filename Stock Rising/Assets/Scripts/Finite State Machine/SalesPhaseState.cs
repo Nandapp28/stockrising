@@ -179,7 +179,6 @@ public class SalesPhaseState : SemesterBaseState
                 isMoving = false;
             }
         }
-
     }
 
     public override void OnCollisionEnter(SemesterStateManager semester, Collision collision)

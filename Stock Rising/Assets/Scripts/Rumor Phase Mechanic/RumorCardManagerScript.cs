@@ -15,6 +15,7 @@ public class RumorCardManagerScript : MonoBehaviour
         if (rumorCards.Length != 0)
         {
             RandomizeRumorCard();
+            Debug.Log("Randomisasi Kartu Rumor Telah Selesai");
         }
         else
         {
