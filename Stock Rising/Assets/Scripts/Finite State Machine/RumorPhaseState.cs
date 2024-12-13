@@ -14,7 +14,7 @@ public class RumorPhaseState : SemesterBaseState
     float rotateSpeed = 2.0f;
     bool isMoving = false;
 
-    float timeOpenRumorCard = 5.0f;
+    float timeOpenRumorCard = 2.5f;
 
     GameObject board;
     BoardScript boardScript;
@@ -24,11 +24,14 @@ public class RumorPhaseState : SemesterBaseState
 
     bool isCoreRumorPhaseDone = false;
 
+    bool isSetFinalization = false;
+
     public override void EnterState(SemesterStateManager semester)
     {
         semester.phaseCount += 1;
         semester.phaseName = "Fase Rumor";
         semester.phaseTitleParent.gameObject.SetActive(true);
+        semester.divinationTokenManagerScript.FlipDivToken(semester);
     }
 
     public override void UpdateState(SemesterStateManager semester)
@@ -39,37 +42,49 @@ public class RumorPhaseState : SemesterBaseState
             SetInitialize(semester);
         } else
         {
-            switch (semester.playerState)
+            if (isSetFinalization == true)
             {
-                case GameState.Player1Turn:
-                    Debug.Log("Player 1's Turn " + "Sekarang adalah giliran ");
-                    // referensi ke boardscript 
-                    board = GameObject.Find("Red Board");
-                    boardScript = board.GetComponent<BoardScript>();
-                    CoreRumorPhase(semester, boardScript);
+                if (SetFinalization(semester))
+                {
+                    isSetFinalization = false;
+                    semester.SwitchState(semester.resolutionPhase);
+                    semester.SwitchPlayerState();
+                }
+            }
+            else
+            {
+                switch (semester.playerState)
+                {
+                    case GameState.Player1Turn:
+                        Debug.Log("Player 1's Turn " + "Sekarang adalah giliran ");
+                        // referensi ke boardscript 
+                        board = GameObject.Find("Red Board");
+                        boardScript = board.GetComponent<BoardScript>();
+                        CoreRumorPhase(semester, boardScript);
 
-                    break;
+                        break;
 
-                case GameState.Player2Turn:
-                    Debug.Log("Player 2's Turn " + "Sekarang adalah giliran ");
-                    board = GameObject.Find("Orange Board");
-                    boardScript = board.GetComponent<BoardScript>();
-                    CoreRumorPhase(semester, boardScript);
-                    break;
+                    case GameState.Player2Turn:
+                        Debug.Log("Player 2's Turn " + "Sekarang adalah giliran ");
+                        board = GameObject.Find("Orange Board");
+                        boardScript = board.GetComponent<BoardScript>();
+                        CoreRumorPhase(semester, boardScript);
+                        break;
 
-                case GameState.Player3Turn:
-                    Debug.Log("Player 3's Turn " + "Sekarang adalah giliran ");
-                    board = GameObject.Find("Blue Board");
-                    boardScript = board.GetComponent<BoardScript>();
-                    CoreRumorPhase(semester, boardScript);
-                    break;
+                    case GameState.Player3Turn:
+                        Debug.Log("Player 3's Turn " + "Sekarang adalah giliran ");
+                        board = GameObject.Find("Blue Board");
+                        boardScript = board.GetComponent<BoardScript>();
+                        CoreRumorPhase(semester, boardScript);
+                        break;
 
-                case GameState.PlayersStop:
-                    Debug.Log("PlayerStop's turn");
-                    board = GameObject.Find("Green Board");
-                    boardScript = board.GetComponent<BoardScript>();
-                    CoreRumorPhase(semester, boardScript);
-                    break;
+                    case GameState.PlayersStop:
+                        Debug.Log("PlayerStop's turn");
+                        board = GameObject.Find("Green Board");
+                        boardScript = board.GetComponent<BoardScript>();
+                        CoreRumorPhase(semester, boardScript);
+                        break;
+                }
             }
         }
     }
@@ -132,7 +147,7 @@ public class RumorPhaseState : SemesterBaseState
 
             isTextureNameSaved = false;
 
-            timeOpenRumorCard = 5.0f;
+            timeOpenRumorCard = 2.5f;
             delaySession1Done = false;
             timeDelaySession1 = 1.5f;
             delaySession2Done = false;
@@ -146,8 +161,9 @@ public class RumorPhaseState : SemesterBaseState
             if (semester.playerState == (GameState)3)
             {
                 Debug.Log("Ganti Fase Resolusi");
-                semester.SwitchState(semester.resolutionPhase);
-                semester.SwitchPlayerState();
+                isSetFinalization = true;
+                //semester.SwitchState(semester.resolutionPhase);
+                //semester.SwitchPlayerState();
             } else
             {
                 semester.SwitchPlayerState();
@@ -168,6 +184,18 @@ public class RumorPhaseState : SemesterBaseState
             setInitIndex = 1;
             timeEnterCD = 2.0f;
         }
+    }
+
+    bool SetFinalization(SemesterStateManager semester)
+    {
+        Debug.Log("Update from SetFinalization() ActionPhaseState");
+        isMoving = true;
+        MoveCamera(semester.mainCamera, semester.cameraPost1);
+        if (isMoving == false)
+        {
+            return true;
+        }
+        return false;
     }
 
     private void RumorCardDB(BoardScript boardScript, SemesterStateManager semester) // sekali main
