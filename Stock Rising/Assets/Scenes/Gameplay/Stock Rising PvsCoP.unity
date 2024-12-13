@@ -2127,6 +2127,7 @@ MonoBehaviour:
   dices: {fileID: 1415499279}
   rollDiceButton: {fileID: 142445334}
   diceManagerScript: {fileID: 356628176}
+  divinationTokenManagerScript: {fileID: 998084659}
   actionCardsObj: {fileID: 378548482}
   actionCardManagerObj: {fileID: 1770849211}
   actionCardisSaved: 0
@@ -6101,6 +6102,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dba1d6b6ab9fa42b5b458d64a3ae82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  divTokenTextures:
+  - {fileID: 2800000, guid: 8fa55e0eba34ea146b327971bb6796ce, type: 3}
+  - {fileID: 2800000, guid: 3310b0f5a3b7ea54eaf5dc0708273a44, type: 3}
+  - {fileID: 2800000, guid: 0d7565a3711dd5342bb485437068460b, type: 3}
+  - {fileID: 2800000, guid: 4d045482b863ce84fb55f5d67ebb0f27, type: 3}
+  boards:
+  - {fileID: 736088112}
+  - {fileID: 322791560}
+  - {fileID: 1015523966}
+  - {fileID: 1790203886}
+  tokenTaken: 0
 --- !u!1001 &1002739506
 PrefabInstance:
   m_ObjectHideFlags: 0

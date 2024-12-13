@@ -39,6 +39,7 @@ public class SemesterStateManager : MonoBehaviour
     public GameObject dices; // untuk aktifin dan non-aktifin parent dari dice-dice
     public Button rollDiceButton; // untuk aktifin dan non-aktifin Button Roll
     public DiceManagerScript diceManagerScript;
+    public DivinationTokenManagerScript divinationTokenManagerScript;
 
     // Action Phase
     [Header("Action Phase")]

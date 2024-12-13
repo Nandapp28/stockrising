@@ -19,6 +19,7 @@ public class BiddingPhaseState : SemesterBaseState
         semester.phaseCount += 1;
         semester.phaseName = "Fase Bidding";
         semester.phaseTitleParent.gameObject.SetActive(true);
+        semester.divinationTokenManagerScript.FlipDivToken(semester);
     }
 
     public override void UpdateState(SemesterStateManager semester)
