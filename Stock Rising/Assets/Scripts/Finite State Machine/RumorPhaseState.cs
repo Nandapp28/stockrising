@@ -61,7 +61,6 @@ public class RumorPhaseState : SemesterBaseState
                         board = GameObject.Find("Red Board");
                         boardScript = board.GetComponent<BoardScript>();
                         CoreRumorPhase(semester, boardScript);
-
                         break;
 
                     case GameState.Player2Turn:

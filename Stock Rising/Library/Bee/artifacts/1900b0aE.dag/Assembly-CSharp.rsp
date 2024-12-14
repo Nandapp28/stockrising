@@ -378,6 +378,7 @@
 "Assets/Scripts/PhaseTitleScript.cs"
 "Assets/Scripts/PlayerScript.cs"
 "Assets/Scripts/Resolution Phase Mechanic/DivinationTokenManagerScript.cs"
+"Assets/Scripts/Resolution Phase Mechanic/DivinationTokenScript.cs"
 "Assets/Scripts/Rumor Phase Mechanic/RumorCardButtonScript.cs"
 "Assets/Scripts/Rumor Phase Mechanic/RumorCardManagerScript.cs"
 "Assets/Scripts/Rumor Phase Mechanic/RumorCardScript.cs"

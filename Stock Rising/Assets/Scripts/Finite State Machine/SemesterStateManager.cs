@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using static BiddingPhaseState;
+using System;
 
 public enum GameState { Player1Turn, Player2Turn, Player3Turn, PlayersStop };
 
@@ -86,6 +87,19 @@ public class SemesterStateManager : MonoBehaviour
     {
         currentState = state;
         state.EnterState(this);
+    }
+
+    public void SwitchSemester()
+    {
+        SemesterBaseState[] states = { firstSemester, secondSemester };
+        int index = (int)semesterCount;
+        if (index != states.Length)
+        {
+            SwitchState(states[index - 1]);
+        } else
+        {
+            Debug.Log("Akhiri Game");
+        }
     }
 
     public GameState SwitchPlayerState()
