@@ -5,6 +5,7 @@ public class FirstSemesterState : SemesterBaseState
 {
     public override void EnterState(SemesterStateManager semester)
     {
+        Debug.Log("From Semester 1");
         semester.SemesterInitialization();
     }
 
@@ -17,6 +18,4 @@ public class FirstSemesterState : SemesterBaseState
     {
 
     }
-
-
 }

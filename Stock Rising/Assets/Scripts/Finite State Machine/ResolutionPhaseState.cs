@@ -21,6 +21,7 @@ public class ResolutionPhaseState : SemesterBaseState
     bool isTextureNameSaved = false;
 
     bool isSetFinalization = false;
+    bool isDividendDitributed = false;
 
     public override void EnterState(SemesterStateManager semester)
     {
@@ -39,11 +40,22 @@ public class ResolutionPhaseState : SemesterBaseState
         {
             if (isSetFinalization == true)
             {
-                if (SetFinalization(semester))
+                if (isDividendDitributed == false)
                 {
-                    isSetFinalization = false;
-                    //semester.SwitchState(semester.);
-                    semester.SwitchPlayerState();
+                    DividendDistribution(semester);
+                    isDividendDitributed = true;
+                } else
+                {
+                    if (SetFinalization(semester))
+                    {
+                        setInitIndex = 0;
+                        timeEnterCD = 2.0f;
+                        isSetFinalization = false;
+                        isDividendDitributed = false;
+                        //semester.SwitchState(semester.);
+                        semester.SwitchSemester();
+                        semester.SwitchPlayerState();
+                    }
                 }
             } else
             {
@@ -51,38 +63,72 @@ public class ResolutionPhaseState : SemesterBaseState
                 {
                     case GameState.Player1Turn:
                         Debug.Log("Player 1's Turn " + "Sekarang adalah giliran ");
-                        board = GameObject.Find("Red Board");
-                        boardScript = board.GetComponent<BoardScript>();
-                        CoreResolutionPhase(semester);
+                        CoreResolutionPhase(semester, "Red Board");
                         break;
 
                     case GameState.Player2Turn:
                         Debug.Log("Player 2's Turn " + "Sekarang adalah giliran ");
-                        board = GameObject.Find("Orange Board");
-                        boardScript = board.GetComponent<BoardScript>();
-                        CoreResolutionPhase(semester);
+                        CoreResolutionPhase(semester, "Orange Board");
                         break;
 
                     case GameState.Player3Turn:
                         Debug.Log("Player 3's Turn " + "Sekarang adalah giliran ");
-                        board = GameObject.Find("Blue Board");
-                        boardScript = board.GetComponent<BoardScript>();
-                        CoreResolutionPhase(semester);
+                        CoreResolutionPhase(semester, "Blue Board");
                         break;
 
                     case GameState.PlayersStop:
                         Debug.Log("PlayerStop's turn");
-                        board = GameObject.Find("Green Board");
-                        boardScript = board.GetComponent<BoardScript>();
-                        CoreResolutionPhase(semester);
+                        CoreResolutionPhase(semester, "Green Board");
                         break;
                 }
             }
         }
     }
 
-    private void CoreResolutionPhase(SemesterStateManager semester)
+    private void DividendDistribution(SemesterStateManager semester)
     {
+        // perulangan boards yang ada
+        GameObject[] boards = semester.divinationTokenManagerScript.boards;
+        foreach (var board in boards)
+        {
+            // ambil nilai CP 
+            BoardScript boardScript = board.GetComponent<BoardScript>();
+            int boardCPValue = (int)boardScript.currentCPValue;
+            // terapkan pada player yang memiliki kartu saham sektor
+            foreach (var player in semester.players)
+            {
+                PlayerScript playerScript = player.GetComponent<PlayerScript>();
+                if (board.name == "Red Board")
+                {
+                    AddDividendDistribution(boardCPValue, playerScript, playerScript.actionCMerah);
+                } else if (board.name == "Orange Board")
+                {
+                    AddDividendDistribution(boardCPValue, playerScript, playerScript.actionCOranye);
+                } else if (board.name == "Blue Board")
+                {
+                    AddDividendDistribution(boardCPValue, playerScript, playerScript.actionCBiru);
+                } else if (board.name == "Green Board")
+                {
+                    AddDividendDistribution(boardCPValue, playerScript, playerScript.actionCHijau);
+                }
+            }
+        }
+    }
+
+    private static void AddDividendDistribution(int boardCPValue, PlayerScript playerScript, int countCard)
+    {
+        if (countCard != 0)
+        {
+            int addIP = boardCPValue * countCard;
+            playerScript.investmentPoint += addIP;
+        }
+    }
+
+    private void CoreResolutionPhase(SemesterStateManager semester, string boardName)
+    {
+        board = GameObject.Find(boardName);
+        boardScript = board.GetComponent<BoardScript>();
+
         // move kamera
         GameObject camPost = board.transform.Find("Camera Post").gameObject;
         isMoving = true;
@@ -260,7 +306,6 @@ public class ResolutionPhaseState : SemesterBaseState
         {
             semester.phaseTitleParent.gameObject.SetActive(false);
             setInitIndex = 1;
-            timeEnterCD = 2.0f;
         }
     }
 

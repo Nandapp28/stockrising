@@ -47,6 +47,8 @@ public class RumorPhaseState : SemesterBaseState
                 if (SetFinalization(semester))
                 {
                     isSetFinalization = false;
+                    setInitIndex = 0;
+                    timeEnterCD = 2.0f;
                     semester.SwitchState(semester.resolutionPhase);
                     semester.SwitchPlayerState();
                 }

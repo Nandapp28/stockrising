@@ -33,6 +33,11 @@ public class BiddingPhaseState : SemesterBaseState
             string playerName = player.name;
             playerNames.Add(playerName);
         }
+
+        //foreach (var playerOrderNum in playerOrderNums)
+        //{
+        //    playerOrderNums.Remove(playerOrderNum);
+        //}
     }
 
     public override void UpdateState(SemesterStateManager semester)
@@ -82,6 +87,10 @@ public class BiddingPhaseState : SemesterBaseState
                         timeNextStateCD -= Time.deltaTime;
                     } else
                     {
+                        timeEnterCD = 2.0f;
+                        timeSortCD = 2.0f;
+                        timeNextStateCD = 2.0f;
+                        semester.rollDiceButton.enabled = true;
                         semester.SwitchState(semester.actionPhase);
                     }
                 }

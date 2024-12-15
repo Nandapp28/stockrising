@@ -34,6 +34,18 @@ public class SemesterStateManager : MonoBehaviour
     [Header("Semester 2")]
     public SecondSemesterState secondSemester = new SecondSemesterState();
 
+    // Semester 3
+    [Header("Semester 3")]
+    public ThirdSemesterState thirdSemester = new ThirdSemesterState();
+
+    // Semester 4
+    [Header("Semester 4")]
+    public FourthSemesterState fourthSemester = new FourthSemesterState();
+
+    // Game End
+    [Header("Game End State")]
+    public GameEndState gameEnd = new GameEndState();
+
     // Bidding Phase
     [Header("Bidding Phase")]
     public BiddingPhaseState biddingPhase = new BiddingPhaseState();
@@ -91,15 +103,9 @@ public class SemesterStateManager : MonoBehaviour
 
     public void SwitchSemester()
     {
-        SemesterBaseState[] states = { firstSemester, secondSemester };
+        SemesterBaseState[] states = { firstSemester, secondSemester, thirdSemester, fourthSemester, gameEnd };
         int index = (int)semesterCount;
-        if (index != states.Length)
-        {
-            SwitchState(states[index - 1]);
-        } else
-        {
-            Debug.Log("Akhiri Game");
-        }
+        SwitchState(states[index]);
     }
 
     public GameState SwitchPlayerState()
@@ -132,7 +138,7 @@ public class SemesterStateManager : MonoBehaviour
         {
             divinationToken.gameObject.SetActive(true);
         }
-        SwitchState(resolutionPhase);
+        SwitchState(biddingPhase);
     }
 
     public GameObject CheckPlayerOrder(int playerOrderReq)

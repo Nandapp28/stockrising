@@ -672,6 +672,14 @@ PrefabInstance:
       propertyPath: actionCHijau
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8222145016405300880, guid: b3959d3d2e871f94dbe69cd962e2ee2f, type: 3}
+      propertyPath: actionCMerah
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8222145016405300880, guid: b3959d3d2e871f94dbe69cd962e2ee2f, type: 3}
+      propertyPath: actionCOranye
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9022091994180777825, guid: b3959d3d2e871f94dbe69cd962e2ee2f, type: 3}
       propertyPath: m_Name
       value: Player 2
@@ -1296,6 +1304,8 @@ MonoBehaviour:
   rb: {fileID: 190723511}
   isRolling: 0
   indexResult: 0
+  initialPosition: {x: 0, y: 0, z: 0}
+  initialRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &191390297
 GameObject:
   m_ObjectHideFlags: 0
@@ -2127,7 +2137,6 @@ MonoBehaviour:
   dices: {fileID: 1415499279}
   rollDiceButton: {fileID: 142445334}
   diceManagerScript: {fileID: 356628176}
-  divinationTokenManager: {fileID: 998084657}
   divinationTokenManagerScript: {fileID: 998084659}
   actionCardsObj: {fileID: 378548482}
   actionCardManagerObj: {fileID: 1770849211}
@@ -9191,7 +9200,15 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8222145016405300880, guid: b3959d3d2e871f94dbe69cd962e2ee2f, type: 3}
+      propertyPath: actionCHijau
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8222145016405300880, guid: b3959d3d2e871f94dbe69cd962e2ee2f, type: 3}
       propertyPath: actionCMerah
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8222145016405300880, guid: b3959d3d2e871f94dbe69cd962e2ee2f, type: 3}
+      propertyPath: actionCOranye
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9022091994180777825, guid: b3959d3d2e871f94dbe69cd962e2ee2f, type: 3}
@@ -10183,6 +10200,8 @@ MonoBehaviour:
   rb: {fileID: 1680015390}
   isRolling: 0
   indexResult: 0
+  initialPosition: {x: 0, y: 0, z: 0}
+  initialRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1691451242
 GameObject:
   m_ObjectHideFlags: 0
@@ -14181,7 +14200,15 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8222145016405300880, guid: b3959d3d2e871f94dbe69cd962e2ee2f, type: 3}
+      propertyPath: actionCBiru
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8222145016405300880, guid: b3959d3d2e871f94dbe69cd962e2ee2f, type: 3}
       propertyPath: playerOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8222145016405300880, guid: b3959d3d2e871f94dbe69cd962e2ee2f, type: 3}
+      propertyPath: actionCHijau
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8222145016405300880, guid: b3959d3d2e871f94dbe69cd962e2ee2f, type: 3}
