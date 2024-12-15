@@ -59,6 +59,7 @@ public class DivinationTokenManagerScript : MonoBehaviour
             Transform divinationTokens = board.transform.Find("Divination Tokens");
             Transform divinationToken = divinationTokens.Find("Divination Token " + state.semesterCount);
             GameObject token = divinationToken.Find("Token").gameObject;
+            Debug.Log("Token ini dipilih untuk di flip : " + token);
 
             // flip token 
             token.transform.rotation = Quaternion.identity;

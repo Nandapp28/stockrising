@@ -14,7 +14,7 @@ public class DivinationTokenScript : MonoBehaviour
     float moveSpeed = 8.0f;
     float rotateSpeed = 8.0f;
 
-    void Start()
+    void OnEnable()
     {
         camMiddlePoint = Camera.main.transform.Find("Middle Point").gameObject.transform;
         initialPosition = transform.position; initialRotation = transform.rotation;

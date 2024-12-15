@@ -119,6 +119,22 @@ public class SemesterStateManager : MonoBehaviour
         return playerState = (GameState)0;
     }
 
+    public void SemesterInitialization()
+    {
+        semesterCount += 1;
+        GameObject[] divinationTokens = GameObject.FindGameObjectsWithTag("Divination Token");
+        foreach (var divinationToken in divinationTokens)
+        {
+            divinationToken.gameObject.SetActive(false);
+        }
+        divinationTokenManagerScript.FlipDivToken(this.GetComponent<SemesterStateManager>());
+        foreach (var divinationToken in divinationTokens)
+        {
+            divinationToken.gameObject.SetActive(true);
+        }
+        SwitchState(resolutionPhase);
+    }
+
     public GameObject CheckPlayerOrder(int playerOrderReq)
     {
         foreach (var player in players)
