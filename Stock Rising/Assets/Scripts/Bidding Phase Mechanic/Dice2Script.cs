@@ -8,11 +8,20 @@ public class Dice2Script : MonoBehaviour
     public Rigidbody rb;
     public bool isRolling = false; // trigger button
     public int indexResult = 0;
+    public Vector3 initialPosition;
+    public Quaternion initialRotation;
 
-    void Start()
-    {
-        //SetInitialState();
-    }
+    //void Start()
+    //{
+    //    initialPosition = transform.position;
+    //    initialRotation = transform.rotation;
+    //}
+
+    //void OnEnable()
+    //{
+    //    transform.position = initialPosition;
+    //    transform.rotation = initialRotation;
+    //}
 
     void Update()
     {

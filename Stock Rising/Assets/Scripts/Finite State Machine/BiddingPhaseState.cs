@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using static BiddingPhaseState;
 
@@ -9,6 +10,11 @@ public class BiddingPhaseState : SemesterBaseState
     float timeEnterCD = 2.0f;
     float timeSortCD = 2.0f;
     float timeNextStateCD = 2.0f;
+
+    // FindPlayerTurn() needed
+    List<string> playerNames = new List<string>();
+    GameObject playerTurn;
+    bool isPlayerTurnFound = false;
 
     PlayerScript currentPlayerScript;
     List<PlayerOrderNum> playerOrderNums = new List<PlayerOrderNum>();
@@ -19,60 +25,38 @@ public class BiddingPhaseState : SemesterBaseState
         semester.phaseCount += 1;
         semester.phaseName = "Fase Bidding";
         semester.phaseTitleParent.gameObject.SetActive(true);
+        //semester.divinationTokenManagerScript.FlipDivToken(semester);
+
+        foreach (GameObject player in semester.players)
+        {
+            //PlayerScript playerScript = player.GetComponent<PlayerScript>();
+            string playerName = player.name;
+            playerNames.Add(playerName);
+        }
+
+        //foreach (var playerOrderNum in playerOrderNums)
+        //{
+        //    playerOrderNums.Remove(playerOrderNum);
+        //}
     }
 
     public override void UpdateState(SemesterStateManager semester)
     {
+        Debug.Log(playerNames.Count);
         SetInitialize(semester);
         switch (semester.playerState)
         {
             case GameState.Player1Turn:
                 Debug.Log("Player 1's Turn");
-                if (semester.diceManagerScript.CountDiceResult() != 0)
-                {
-                    currentPlayerScript = semester.players[0].GetComponent<PlayerScript>();
-                    currentPlayerScript.playerOrder = semester.diceManagerScript.diceResult;
-                    PlayerOrderNum playerOrderNum = new PlayerOrderNum
-                    {
-                        orderNum = currentPlayerScript.playerOrder,
-                        playerGameObject = semester.players[0]
-                    };
-                    playerOrderNums.Add(playerOrderNum);
-                    ResetDice(semester);
-                    semester.playerState = GameState.Player2Turn;
-                }
+                CoreBiddingPhase(semester, FindPlayerTurn(semester, 1));
                 break;
             case GameState.Player2Turn:
                 Debug.Log("Player 2's Turn");
-                if (semester.diceManagerScript.CountDiceResult() != 0)
-                {
-                    currentPlayerScript = semester.players[1].GetComponent<PlayerScript>();
-                    currentPlayerScript.playerOrder = semester.diceManagerScript.diceResult;
-                    PlayerOrderNum playerOrderNum = new PlayerOrderNum
-                    {
-                        orderNum = currentPlayerScript.playerOrder,
-                        playerGameObject = semester.players[1]
-                    };
-                    playerOrderNums.Add(playerOrderNum);
-                    ResetDice(semester);
-                    semester.playerState = GameState.Player3Turn;
-                }
+                CoreBiddingPhase(semester, FindPlayerTurn(semester, 2));
                 break;
             case GameState.Player3Turn:
                 Debug.Log("Player 3's Turn");
-                if (semester.diceManagerScript.CountDiceResult() != 0)
-                {
-                    currentPlayerScript = semester.players[2].GetComponent<PlayerScript>();
-                    currentPlayerScript.playerOrder = semester.diceManagerScript.diceResult;
-                    PlayerOrderNum playerOrderNum = new PlayerOrderNum
-                    {
-                        orderNum = currentPlayerScript.playerOrder,
-                        playerGameObject = semester.players[2]
-                    };
-                    playerOrderNums.Add(playerOrderNum);
-                    ResetDice(semester);
-                    semester.playerState = GameState.PlayersStop;
-                }
+                CoreBiddingPhase(semester, FindPlayerTurn(semester, 3));
                 break;
             case GameState.PlayersStop: 
                 Debug.Log("Players Stop");
@@ -103,12 +87,64 @@ public class BiddingPhaseState : SemesterBaseState
                         timeNextStateCD -= Time.deltaTime;
                     } else
                     {
+                        timeEnterCD = 2.0f;
+                        timeSortCD = 2.0f;
+                        timeNextStateCD = 2.0f;
+                        semester.rollDiceButton.enabled = true;
                         semester.SwitchState(semester.actionPhase);
                     }
                 }
                 break;
 
         }
+    }
+
+    private void CoreBiddingPhase(SemesterStateManager semester, GameObject playerObj)
+    {
+        if (semester.diceManagerScript.CountDiceResult() != 0)
+        {
+            currentPlayerScript = playerObj.GetComponent<PlayerScript>();
+            currentPlayerScript.playerOrder = semester.diceManagerScript.diceResult;
+            PlayerOrderNum playerOrderNum = new PlayerOrderNum
+            {
+                orderNum = currentPlayerScript.playerOrder,
+                playerGameObject = playerObj
+            };
+            playerOrderNums.Add(playerOrderNum);
+            ResetDice(semester);
+            isPlayerTurnFound = false;
+            semester.SwitchPlayerState();
+        }
+    }
+
+    private GameObject FindPlayerTurn(SemesterStateManager semester, int orderIndex)
+    {
+        if (isPlayerTurnFound == false)
+        {
+            //PlayerScript player0Script = semester.players[0].GetComponent<PlayerScript>();
+            if (semester.semesterCount == 1)
+            {
+                string playerName = playerNames[Random.Range(0, playerNames.Count - 1)];
+                foreach (GameObject index in semester.players)
+                {
+                    //PlayerScript indexScript = index.GetComponent<PlayerScript>();
+                    if (index.name == playerName)
+                    {
+                        playerTurn = index;
+                        playerNames.Remove(playerName);
+                        isPlayerTurnFound = true;
+                        return playerTurn;
+                    }
+                }
+            }
+            else
+            {
+                playerTurn = semester.CheckPlayerOrder(orderIndex);
+                isPlayerTurnFound = true;
+                return playerTurn;
+            }
+        }
+        return playerTurn;
     }
 
     void SetInitialize(SemesterStateManager semester)

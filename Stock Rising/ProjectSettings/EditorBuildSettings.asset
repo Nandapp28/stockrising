@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Menu/Main Menu.unity
+    guid: 1191972f595d6384a8eaa3b0ddd08f48
+  - enabled: 1
+    path: Assets/Scenes/Gameplay/Stock Rising PvsCoP.unity
+    guid: 5b7d613057515f840bc7e7ab9521c0c9
   m_configObjects: {}

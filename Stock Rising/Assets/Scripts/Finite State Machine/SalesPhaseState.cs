@@ -92,6 +92,8 @@ public class SalesPhaseState : SemesterBaseState
 
                 case GameState.PlayersStop:
                     Debug.Log("Ganti Fase Rumor");
+                    setInitIndex = 0;
+                    timeEnterCD = 2.0f;
                     semester.SwitchState(semester.rumorPhase);
                     semester.SwitchPlayerState();
                     break;

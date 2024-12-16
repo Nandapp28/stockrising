@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using static BiddingPhaseState;
+using System;
 
 public enum GameState { Player1Turn, Player2Turn, Player3Turn, PlayersStop };
 
@@ -33,12 +34,25 @@ public class SemesterStateManager : MonoBehaviour
     [Header("Semester 2")]
     public SecondSemesterState secondSemester = new SecondSemesterState();
 
+    // Semester 3
+    [Header("Semester 3")]
+    public ThirdSemesterState thirdSemester = new ThirdSemesterState();
+
+    // Semester 4
+    [Header("Semester 4")]
+    public FourthSemesterState fourthSemester = new FourthSemesterState();
+
+    // Game End
+    [Header("Game End State")]
+    public GameEndState gameEnd = new GameEndState();
+
     // Bidding Phase
     [Header("Bidding Phase")]
     public BiddingPhaseState biddingPhase = new BiddingPhaseState();
     public GameObject dices; // untuk aktifin dan non-aktifin parent dari dice-dice
     public Button rollDiceButton; // untuk aktifin dan non-aktifin Button Roll
     public DiceManagerScript diceManagerScript;
+    public DivinationTokenManagerScript divinationTokenManagerScript;
 
     // Action Phase
     [Header("Action Phase")]
@@ -87,6 +101,13 @@ public class SemesterStateManager : MonoBehaviour
         state.EnterState(this);
     }
 
+    public void SwitchSemester()
+    {
+        SemesterBaseState[] states = { firstSemester, secondSemester, thirdSemester, fourthSemester, gameEnd };
+        int index = (int)semesterCount;
+        SwitchState(states[index]);
+    }
+
     public GameState SwitchPlayerState()
     {
         if (playerState == (GameState)0)
@@ -102,6 +123,22 @@ public class SemesterStateManager : MonoBehaviour
             return playerState = (GameState)3;
         }
         return playerState = (GameState)0;
+    }
+
+    public void SemesterInitialization()
+    {
+        semesterCount += 1;
+        GameObject[] divinationTokens = GameObject.FindGameObjectsWithTag("Divination Token");
+        foreach (var divinationToken in divinationTokens)
+        {
+            divinationToken.gameObject.SetActive(false);
+        }
+        divinationTokenManagerScript.FlipDivToken(this.GetComponent<SemesterStateManager>());
+        foreach (var divinationToken in divinationTokens)
+        {
+            divinationToken.gameObject.SetActive(true);
+        }
+        SwitchState(biddingPhase);
     }
 
     public GameObject CheckPlayerOrder(int playerOrderReq)
