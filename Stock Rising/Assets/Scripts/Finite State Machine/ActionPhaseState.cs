@@ -52,6 +52,36 @@ public class ActionPhaseState : SemesterBaseState
 
         // referensi ke script ActionCardManager
         actionCardManagerScript = semester.actionCardManagerObj.GetComponent<ActionCardManager>();
+
+        SetVariables();
+    }
+
+    void SetVariables()
+    {
+        moveSpeed = 2.0f;
+        rotateSpeed = 2.0f;
+        isMoving = false;
+
+        setInitIndex = 0;
+        timeEnterCD = 2.0f;
+        currentFx = "null";
+        coreActionPhaseIsDone = false;
+        helpCardIsDone = false;
+
+        // CurrentFx null needed
+        isCurrentFxNull = true;
+
+        // flashbuy fx needed
+        indexFlashbuy = 0;
+        flashbuyIsDone = false;
+
+        // insider trade fx needed
+        rumorCardIsTakedi = 0;
+        insiderTradeIsDone = false;
+
+        // stock split fx needed
+        isStockSplitCardSaved = false;
+        stockSplitIsDone = false;
     }
 
     public override void UpdateState(SemesterStateManager semester)
@@ -116,8 +146,6 @@ public class ActionPhaseState : SemesterBaseState
                     if (SetFinalization(semester))
                     {
                         Debug.Log("Ganti Fase Penjualan");
-                        setInitIndex = 0;
-                        timeEnterCD = 2.0f;
                         semester.SwitchState(semester.salesPhase);
                         semester.SwitchPlayerState();
                     }
