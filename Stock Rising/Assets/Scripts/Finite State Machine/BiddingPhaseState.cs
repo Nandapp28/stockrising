@@ -22,19 +22,19 @@ public class BiddingPhaseState : SemesterBaseState
 
     public override void EnterState(SemesterStateManager semester)
     {
+        SetVariables();
+
         semester.phaseCount += 1;
         semester.phaseName = "Fase Bidding";
         semester.phaseTitleParent.gameObject.SetActive(true);
         //semester.divinationTokenManagerScript.FlipDivToken(semester);
-
+        
         foreach (GameObject player in semester.players)
         {
             //PlayerScript playerScript = player.GetComponent<PlayerScript>();
             string playerName = player.name;
             playerNames.Add(playerName);
         }
-
-        SetVariables();
     }
 
     void SetVariables()
@@ -126,6 +126,7 @@ public class BiddingPhaseState : SemesterBaseState
         if (isPlayerTurnFound == false)
         {
             //PlayerScript player0Script = semester.players[0].GetComponent<PlayerScript>();
+            Debug.Log(playerNames.Count);
             if (semester.semesterCount == 1)
             {
                 string playerName = playerNames[Random.Range(0, playerNames.Count - 1)];

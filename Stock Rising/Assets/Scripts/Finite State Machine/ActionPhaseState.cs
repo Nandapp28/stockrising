@@ -46,14 +46,14 @@ public class ActionPhaseState : SemesterBaseState
 
     public override void EnterState(SemesterStateManager semester)
     {
+        SetVariables();
+
         semester.phaseCount += 1;
         semester.phaseName = "Fase Aksi";
         semester.phaseTitleParent.gameObject.SetActive(true);
 
         // referensi ke script ActionCardManager
         actionCardManagerScript = semester.actionCardManagerObj.GetComponent<ActionCardManager>();
-
-        SetVariables();
     }
 
     void SetVariables()
