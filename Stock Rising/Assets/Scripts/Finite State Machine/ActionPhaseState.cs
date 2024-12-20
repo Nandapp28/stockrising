@@ -102,8 +102,12 @@ public class ActionPhaseState : SemesterBaseState
                 if (semester.coreActionPhaseIsDone == true && semester.helpCardIsDone == false)
                 {
                     Debug.Log("Jalankan Penawaran Pakai Kartu Bantuan");
+                    semester.buttonHelpCard.SetActive(true);
                 }
-                else
+                else if (semester.coreActionPhaseIsDone == true && semester.helpCardIsDone == true)
+                {
+                    semester.playerState = (GameState)3;
+                } else
                 {
                     CoreActionPhase(semester);
                 }
@@ -115,6 +119,11 @@ public class ActionPhaseState : SemesterBaseState
                 if (semester.coreActionPhaseIsDone == true && semester.helpCardIsDone == false)
                 {
                     Debug.Log("Jalankan Penawaran Pakai Kartu Bantuan");
+                    semester.buttonHelpCard.SetActive(true);
+                }
+                else if (semester.coreActionPhaseIsDone == true && semester.helpCardIsDone == true)
+                {
+                    semester.playerState = (GameState)3;
                 }
                 else
                 {
@@ -128,7 +137,13 @@ public class ActionPhaseState : SemesterBaseState
                 if (semester.coreActionPhaseIsDone == true && semester.helpCardIsDone == false)
                 {
                     Debug.Log("Jalankan Penawaran Pakai Kartu Bantuan");
-                } else
+                    semester.buttonHelpCard.SetActive(true);
+                }
+                else if (semester.coreActionPhaseIsDone == true && semester.helpCardIsDone == true)
+                {
+                    semester.playerState = (GameState)3;
+                }
+                else
                 {
                     CoreActionPhase(semester);
                 }

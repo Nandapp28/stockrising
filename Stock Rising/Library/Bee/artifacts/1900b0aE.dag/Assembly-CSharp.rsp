@@ -376,6 +376,7 @@
 "Assets/Scripts/Finite State Machine/SemesterBaseState.cs"
 "Assets/Scripts/Finite State Machine/SemesterStateManager.cs"
 "Assets/Scripts/Finite State Machine/ThirdSemesterState.cs"
+"Assets/Scripts/HelpCardButton.cs"
 "Assets/Scripts/HelpCardManager.cs"
 "Assets/Scripts/Main Menu/LoadingSceneScript.cs"
 "Assets/Scripts/Main Menu/MainMenuScript.cs"
