@@ -26,7 +26,20 @@ public class SalesPhaseState : SemesterBaseState
         semester.phaseTitleParent.gameObject.SetActive(true);
 
         // referensi ke script ActionCardManager
-        actionCardManagerScript = semester.actionCardManagerObj.GetComponent<ActionCardManager>();
+        //actionCardManagerScript = semester.actionCardManagerObj.GetComponent<ActionCardManager>();
+
+        SetVariables();
+    }
+
+    void SetVariables()
+    {
+        setInitIndex = 0;
+        timeEnterCD = 2.0f;
+        timeCoreSalesPhaseCD = 30.0f;
+
+        moveSpeed = 2.0f;
+        rotateSpeed = 2.0f;
+        isMoving = false;
     }
 
     public override void UpdateState(SemesterStateManager semester)
@@ -92,8 +105,6 @@ public class SalesPhaseState : SemesterBaseState
 
                 case GameState.PlayersStop:
                     Debug.Log("Ganti Fase Rumor");
-                    setInitIndex = 0;
-                    timeEnterCD = 2.0f;
                     semester.SwitchState(semester.rumorPhase);
                     semester.SwitchPlayerState();
                     break;

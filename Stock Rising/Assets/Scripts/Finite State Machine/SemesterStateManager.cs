@@ -62,6 +62,9 @@ public class SemesterStateManager : MonoBehaviour
     public bool actionCardisSaved = false;
     public bool actionCardisActivated = false;
     public GameObject rumorCardButton;
+    public bool coreActionPhaseIsDone = false;
+    public bool helpCardIsDone = false;
+    public GameObject buttonHelpCard;
 
     // Sales Phase
     public SalesPhaseState salesPhase = new SalesPhaseState();

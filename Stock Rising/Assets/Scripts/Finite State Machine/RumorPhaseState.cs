@@ -32,6 +32,25 @@ public class RumorPhaseState : SemesterBaseState
         semester.phaseName = "Fase Rumor";
         semester.phaseTitleParent.gameObject.SetActive(true);
         semester.divinationTokenManagerScript.FlipDivToken(semester);
+        SetVariables();
+    }
+
+    void SetVariables()
+    {
+        setInitIndex = 0;
+        timeEnterCD = 2.0f;
+
+        moveSpeed = 2.0f;
+        rotateSpeed = 2.0f;
+        isMoving = false;
+
+        timeOpenRumorCard = 2.5f;
+
+        isTextureNameSaved = false;
+
+        isCoreRumorPhaseDone = false;
+
+        isSetFinalization = false;
     }
 
     public override void UpdateState(SemesterStateManager semester)
@@ -46,9 +65,6 @@ public class RumorPhaseState : SemesterBaseState
             {
                 if (SetFinalization(semester))
                 {
-                    isSetFinalization = false;
-                    setInitIndex = 0;
-                    timeEnterCD = 2.0f;
                     semester.SwitchState(semester.resolutionPhase);
                     semester.SwitchPlayerState();
                 }

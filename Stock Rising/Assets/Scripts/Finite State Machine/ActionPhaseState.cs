@@ -13,8 +13,8 @@ public class ActionPhaseState : SemesterBaseState
     int setInitIndex = 0;
     float timeEnterCD = 2.0f;
     string currentFx = "null";
-    bool coreActionPhaseIsDone = false;
-    bool helpCardIsDone = false;
+    //bool semester.coreActionPhaseIsDone = false;
+    //bool semester.helpCardIsDone = false;
 
     // main camera
     float moveSpeed = 2.0f;
@@ -46,12 +46,42 @@ public class ActionPhaseState : SemesterBaseState
 
     public override void EnterState(SemesterStateManager semester)
     {
+        SetVariables(semester);
+
         semester.phaseCount += 1;
         semester.phaseName = "Fase Aksi";
         semester.phaseTitleParent.gameObject.SetActive(true);
 
         // referensi ke script ActionCardManager
         actionCardManagerScript = semester.actionCardManagerObj.GetComponent<ActionCardManager>();
+    }
+
+    void SetVariables(SemesterStateManager semester)
+    {
+        moveSpeed = 2.0f;
+        rotateSpeed = 2.0f;
+        isMoving = false;
+
+        setInitIndex = 0;
+        timeEnterCD = 2.0f;
+        currentFx = "null";
+        semester.coreActionPhaseIsDone = false;
+        semester.helpCardIsDone = false;
+
+        // CurrentFx null needed
+        isCurrentFxNull = true;
+
+        // flashbuy fx needed
+        indexFlashbuy = 0;
+        flashbuyIsDone = false;
+
+        // insider trade fx needed
+        rumorCardIsTakedi = 0;
+        insiderTradeIsDone = false;
+
+        // stock split fx needed
+        isStockSplitCardSaved = false;
+        stockSplitIsDone = false;
     }
 
     public override void UpdateState(SemesterStateManager semester)
@@ -69,11 +99,15 @@ public class ActionPhaseState : SemesterBaseState
             case GameState.Player1Turn:
                 player = semester.CheckPlayerOrder(1); // mencari player urutan pertama
                 Debug.Log("Player 1's Turn" + "Sekarang adalah giliran " + player.name);
-                if (coreActionPhaseIsDone == true && helpCardIsDone == false)
+                if (semester.coreActionPhaseIsDone == true && semester.helpCardIsDone == false)
                 {
                     Debug.Log("Jalankan Penawaran Pakai Kartu Bantuan");
+                    semester.buttonHelpCard.SetActive(true);
                 }
-                else
+                else if (semester.coreActionPhaseIsDone == true && semester.helpCardIsDone == true)
+                {
+                    semester.playerState = (GameState)3;
+                } else
                 {
                     CoreActionPhase(semester);
                 }
@@ -82,9 +116,14 @@ public class ActionPhaseState : SemesterBaseState
             case GameState.Player2Turn:
                 player = semester.CheckPlayerOrder(2); // mencari player urutan kedua
                 Debug.Log("Player 2's Turn" + "Sekarang adalah giliran " + player.name);
-                if (coreActionPhaseIsDone == true && helpCardIsDone == false)
+                if (semester.coreActionPhaseIsDone == true && semester.helpCardIsDone == false)
                 {
                     Debug.Log("Jalankan Penawaran Pakai Kartu Bantuan");
+                    semester.buttonHelpCard.SetActive(true);
+                }
+                else if (semester.coreActionPhaseIsDone == true && semester.helpCardIsDone == true)
+                {
+                    semester.playerState = (GameState)3;
                 }
                 else
                 {
@@ -95,29 +134,33 @@ public class ActionPhaseState : SemesterBaseState
             case GameState.Player3Turn:
                 player = semester.CheckPlayerOrder(3); // mencari player urutan kedua
                 Debug.Log("Player 3's Turn" + "Sekarang adalah giliran " + player.name);
-                if (coreActionPhaseIsDone == true && helpCardIsDone == false)
+                if (semester.coreActionPhaseIsDone == true && semester.helpCardIsDone == false)
                 {
                     Debug.Log("Jalankan Penawaran Pakai Kartu Bantuan");
-                } else
+                    semester.buttonHelpCard.SetActive(true);
+                }
+                else if (semester.coreActionPhaseIsDone == true && semester.helpCardIsDone == true)
+                {
+                    semester.playerState = (GameState)3;
+                }
+                else
                 {
                     CoreActionPhase(semester);
                 }
                 break;
 
             case GameState.PlayersStop:
-                Debug.Log("Player Stop : coreActionPhaseIsDone = " + coreActionPhaseIsDone + " helpCardIsDone = " + helpCardIsDone);
+                Debug.Log("Player Stop : semester.coreActionPhaseIsDone = " + semester.coreActionPhaseIsDone + " semester.helpCardIsDone = " + semester.helpCardIsDone);
                 if (semester.semesterCount == 1)
                 {
-                    helpCardIsDone = true;
+                    semester.helpCardIsDone = true;
                 }
 
-                if (coreActionPhaseIsDone == true && helpCardIsDone == true)
+                if (semester.coreActionPhaseIsDone == true && semester.helpCardIsDone == true)
                 {
                     if (SetFinalization(semester))
                     {
                         Debug.Log("Ganti Fase Penjualan");
-                        setInitIndex = 0;
-                        timeEnterCD = 2.0f;
                         semester.SwitchState(semester.salesPhase);
                         semester.SwitchPlayerState();
                     }
@@ -141,7 +184,7 @@ public class ActionPhaseState : SemesterBaseState
             Debug.Log(actionCardsCount.Length);
             if (actionCardsCount.Length == 0) // jika sudah habis
             {
-                coreActionPhaseIsDone = true;
+                semester.coreActionPhaseIsDone = true;
                 semester.SwitchPlayerState();
             }
         }
@@ -456,9 +499,9 @@ public class ActionPhaseState : SemesterBaseState
         GameObject board = GameObject.Find(boardName);
         Transform rumorCards = board.transform.Find("Rumor Cards");
         int childCount = rumorCards.transform.childCount;
-        if (childCount == 4)
-        {
-            GameObject rumorCard = rumorCards.transform.Find("Rumor Card 1").transform.Find("Card").gameObject;
+        //if (childCount == 4)
+        //{
+            GameObject rumorCard = rumorCards.transform.Find("Rumor Card " + childCount).transform.Find("Card").gameObject;
             if (rumorCardIsTakedi == 0)
             {
                 rumorCard.GetComponent<RumorCardScript>().isTaked = true; // jalankan animasi untuk melihat kartu rumor
@@ -467,7 +510,7 @@ public class ActionPhaseState : SemesterBaseState
             }
             semester.rumorCardButton.transform.Find("Button Selesai Kartu").GetComponent<RumorCardButtonScript>().rumorCardTaken = rumorCard; // beri referensi di script button "selesai"
             rumorCardi = rumorCard;
-        }
+        //}
 
         // tunggu sampai di klik user dan kartu kembali ke papan
         if (rumorCardi != null)
