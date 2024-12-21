@@ -79,6 +79,9 @@ public class SemesterStateManager : MonoBehaviour
     // Resolution Phase
     public ResolutionPhaseState resolutionPhase = new ResolutionPhaseState();
 
+    // Game End State
+    public GameObject leaderBoardObj;
+
     //debug
     //public BPPlayersStopStateDebug bPlayersStopStateDebug;
 

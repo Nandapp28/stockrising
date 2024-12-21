@@ -1694,6 +1694,7 @@ GameObject:
   - component: {fileID: 278263136}
   - component: {fileID: 278263135}
   - component: {fileID: 278263137}
+  - component: {fileID: 278263138}
   m_Layer: 5
   m_Name: Leader Board
   m_TagString: Untagged
@@ -1773,6 +1774,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd574865ea36ce644ab7e6e23b4a6f18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &278263138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 278263133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7313186b245587f47a4ca9c45b96f9a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blackPanel: {fileID: 1243563864}
 --- !u!1 &279289851
 GameObject:
   m_ObjectHideFlags: 0
@@ -2375,6 +2389,7 @@ MonoBehaviour:
   isSalesPhaseSkip: 0
   isSalesPhaseSell: 0
   salesPhaseTimerText: {fileID: 774421264}
+  leaderBoardObj: {fileID: 278263133}
 --- !u!4 &342123182
 Transform:
   m_ObjectHideFlags: 0

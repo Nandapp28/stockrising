@@ -12,6 +12,7 @@ public class GameEndState : SemesterBaseState
     public override void UpdateState(SemesterStateManager semester)
     {
         Debug.Log("Update from GameEndState");
+        semester.leaderBoardObj.SetActive(true);
     }
 
     public override void OnCollisionEnter(SemesterStateManager semester, Collision collision)
