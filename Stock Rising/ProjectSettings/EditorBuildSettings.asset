@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu/Main Menu.unity
     guid: 1191972f595d6384a8eaa3b0ddd08f48
   - enabled: 1
+    path: Assets/Scenes/Menu/Loading Screen.unity
+    guid: ef11e1aaa08e17a4998581f520067591
+  - enabled: 1
     path: Assets/Scenes/Gameplay/Stock Rising PvsCoP.unity
     guid: 5b7d613057515f840bc7e7ab9521c0c9
   m_configObjects: {}

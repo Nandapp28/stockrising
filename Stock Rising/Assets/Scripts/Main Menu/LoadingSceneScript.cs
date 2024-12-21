@@ -1,29 +1,57 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+//using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LoadingSceneScript : MonoBehaviour
 {
-    //public GameObject loadingScene;
-    //public Image loadingBarFill;
+    //public GameObject mainMenuButton;
+    //public GameObject loadingBarObj;
+    public Slider loadingBarSlider;
 
-    //public void LoadScene(int sceneId)
+
+    //private void OnEnable()
     //{
-    //    //StartCoroutine();
+    //    mainMenuButton.SetActive(true);
+    //    loadingBarObj.SetActive(false);
     //}
 
-    //IEnumerator LoadSceneAsync(int sceneId)
-    //{
-    //    AsyncOperation operation = SceneManager.LoadSceneAsync(sceneId);
+    private void Start()
+    {
+        LoadGame(2);
+    }
 
-    //    loadingScene.SetActive(true);
+    public void LoadGame(int sceneIndex)
+    {
+        StartCoroutine(LoadAsynchronously(sceneIndex));
+    }
 
-    //    while (!operation.isDone)
-    //    {
-    //        float progressValue = Mathf.Clamp01(operation.progress / 0.9f);
-            
-    //    }
-    //}
+    IEnumerator LoadAsynchronously(int sceneIndex)
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
+
+        //mainMenuButton.SetActive(false);
+        //loadingBarObj.SetActive(true);
+
+        while (!operation.isDone)
+        {
+            float progress = Mathf.Clamp01(operation.progress / .9f);
+            //Debug.Log(progress);
+            loadingBarSlider.value = progress;
+
+            yield return null;
+        }
+    }
+
+    public void InGameQuitButtonClicked()
+    {
+        SceneManager.LoadSceneAsync(0);
+    }
+
+    public void QuitButtonClicked()
+    {
+        Application.Quit();
+    }
 }
