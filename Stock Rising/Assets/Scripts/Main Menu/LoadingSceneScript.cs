@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 //using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
@@ -10,7 +11,7 @@ public class LoadingSceneScript : MonoBehaviour
     //public GameObject mainMenuButton;
     //public GameObject loadingBarObj;
     public Slider loadingBarSlider;
-
+    public TextMeshProUGUI loadText;
 
     //private void OnEnable()
     //{
@@ -40,6 +41,7 @@ public class LoadingSceneScript : MonoBehaviour
             float progress = Mathf.Clamp01(operation.progress / .9f);
             //Debug.Log(progress);
             loadingBarSlider.value = progress;
+            loadText.text = "Loading.. " + progress * 100f + "%";
 
             yield return null;
         }
