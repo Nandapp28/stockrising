@@ -23,6 +23,7 @@ public class SemesterStateManager : MonoBehaviour
     public GameObject cameraPost1;
     public GameObject cameraPost2;
     public GameObject transparantBgObj;
+    public GameObject currentPlayerObj;
 
     public GameObject[] players;
 
@@ -155,6 +156,13 @@ public class SemesterStateManager : MonoBehaviour
             PlayerScript playerScript = player.GetComponent<PlayerScript>();
             if (playerScript.playerOrder == playerOrderReq)
             {
+                if(currentPlayerObj != null)
+                {
+                    PlayerScript passPlayerScript = currentPlayerObj.GetComponent<PlayerScript>();
+                    passPlayerScript.isPlayerPlaying = false;
+                }
+                currentPlayerObj = player;
+                playerScript.isPlayerPlaying = true;
                 return player;
             } else
             {
