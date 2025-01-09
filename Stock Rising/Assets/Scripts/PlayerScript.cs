@@ -9,6 +9,7 @@ public class PlayerScript : MonoBehaviour
 {
     public string playerName;
     public int playerOrder = 0;
+    public bool isPlayerPlaying = false;
     //public int playerOldOrder = 0;
 
     // referensi UI 
@@ -34,6 +35,9 @@ public class PlayerScript : MonoBehaviour
     private TextMeshProUGUI actionCOranyeText;
     private TextMeshProUGUI actionCBiruText;
     private TextMeshProUGUI actionCHijauText;
+
+    // referensi highlight giliran
+    public GameObject yellowList;
 
 
     public List<ActionCardOwned> actionCardsOwned = new List<ActionCardOwned>();
@@ -66,8 +70,8 @@ public class PlayerScript : MonoBehaviour
             investmentPointText = tmpIPTransform.GetComponent<TextMeshProUGUI>();
         }
 
-            // load total action cards
-            Transform tmpActionCardsTransform = transform.Find("Player Action Cards");
+        // load total action cards
+        Transform tmpActionCardsTransform = transform.Find("Player Action Cards");
         if (tmpOrderNumTransform != null)
         {
             orderNumberText = tmpOrderNumTransform.GetComponent<TextMeshProUGUI>();
@@ -76,6 +80,9 @@ public class PlayerScript : MonoBehaviour
             actionCBiruText = tmpActionCardsTransform.transform.Find("Blue Card").GetComponent<TextMeshProUGUI>();
             actionCHijauText = tmpActionCardsTransform.transform.Find("Green Card").GetComponent<TextMeshProUGUI>();
         }
+
+        // load order highlight
+        yellowList = transform.Find("Player Yellow List").gameObject;
     }
 
     void Update()
@@ -92,6 +99,13 @@ public class PlayerScript : MonoBehaviour
     {
         orderNumberText.text = playerOrder.ToString();
         investmentPointText.text = "x" + investmentPoint.ToString();
+        if (isPlayerPlaying == false)
+        {
+            yellowList.SetActive(false);
+        } else
+        {
+            yellowList.SetActive(true);
+        }
     }
 
     void CountActionCards()

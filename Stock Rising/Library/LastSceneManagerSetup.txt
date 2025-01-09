@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/Menu/Main Menu.unity
+- path: Assets/Scenes/Gameplay/Stock Rising PvsCoP.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
