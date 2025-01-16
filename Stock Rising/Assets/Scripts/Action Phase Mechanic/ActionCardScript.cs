@@ -37,7 +37,7 @@ public class ActionCardScript : MonoBehaviour
             isTaked = !isTaked;
             actionCardManager.cardTaken = !actionCardManager.cardTaken;
             actionCardManager.cardTakenObj = gameObject;
-
+            AudioManager.instance.CardTakenPlaced();
         }
     }
 

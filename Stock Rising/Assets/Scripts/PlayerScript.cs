@@ -7,6 +7,8 @@ using static BiddingPhaseState;
 
 public class PlayerScript : MonoBehaviour
 {
+    public SemesterStateManager state;
+
     public string playerName;
     public int playerOrder = 0;
     public bool isPlayerPlaying = false;
@@ -39,6 +41,8 @@ public class PlayerScript : MonoBehaviour
     // referensi highlight giliran
     public GameObject yellowList;
 
+    public TextMeshProUGUI stripOrderText;
+
 
     public List<ActionCardOwned> actionCardsOwned = new List<ActionCardOwned>();
 
@@ -49,6 +53,9 @@ public class PlayerScript : MonoBehaviour
 
     private void LoadReferences()
     {
+        // load state
+        state = GameObject.FindGameObjectWithTag("State Manager").GetComponent<SemesterStateManager>();
+
         // load name
         Transform tmpNameTransform = transform.Find("Player Name");
         if (tmpNameTransform != null)
@@ -83,12 +90,34 @@ public class PlayerScript : MonoBehaviour
 
         // load order highlight
         yellowList = transform.Find("Player Yellow List").gameObject;
+
+        // load player order text
+        stripOrderText = transform.Find("Player Order").GetComponent<TextMeshProUGUI>();
     }
 
     void Update()
     {
         SetInitialize();
         CountActionCards();
+        if (state.phaseName == "Bidding Phase")
+        {
+            stripOrderText.text = "-";
+        } else
+        {
+            if (playerOrder == 1)
+            {
+                stripOrderText.text = "Pertama";
+            }
+            else if (playerOrder == 2)
+            {
+                stripOrderText.text = "Kedua";
+            }
+            else if (playerOrder == 3)
+            {
+                stripOrderText.text = "Ketiga";
+            }
+        }
+       
         //if (actionCardsOwned.Count != 0)
         //{
         //    Debug.Log("Ini adalah objek kartu aksi yang disimpan = " + actionCardsOwned[0].textureName);

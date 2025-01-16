@@ -85,4 +85,10 @@ public class Dice2Script : MonoBehaviour
         }
         return maxIndex;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        // Memutar suara saat bersentuhan dengan objek apa pun
+        AudioManager.instance.DiceCollisionSFX();
+    }
 }

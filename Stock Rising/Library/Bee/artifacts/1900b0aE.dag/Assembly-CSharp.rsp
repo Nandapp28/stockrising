@@ -355,6 +355,8 @@
 "Assets/Scripts/Action Phase Mechanic/ActionCardButtonScript.cs"
 "Assets/Scripts/Action Phase Mechanic/ActionCardManagerScript.cs"
 "Assets/Scripts/Action Phase Mechanic/ActionCardScript.cs"
+"Assets/Scripts/Audio/AudioManager.cs"
+"Assets/Scripts/Audio/Sound.cs"
 "Assets/Scripts/Bidding Phase Mechanic/Dice1Script.cs"
 "Assets/Scripts/Bidding Phase Mechanic/Dice2Script.cs"
 "Assets/Scripts/Bidding Phase Mechanic/DiceManagerScript.cs"

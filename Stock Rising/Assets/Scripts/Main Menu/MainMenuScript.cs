@@ -54,6 +54,8 @@ public class MainMenuScript : MonoBehaviour
 
             isMusicOn = !isMusicOn;
         }
+
+        AudioManager.instance.MuteMusic();
     }
 
     public void SFXButton()
@@ -85,6 +87,8 @@ public class MainMenuScript : MonoBehaviour
 
             isSFXOn = !isSFXOn;
         }
+
+        AudioManager.instance.MuteSFX();
     }
 
     public void QuitButtonClicked()
