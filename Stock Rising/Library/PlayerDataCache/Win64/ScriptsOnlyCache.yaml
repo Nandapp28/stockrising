@@ -10,6 +10,10 @@ ScriptsOnlyBuild:
     - DiceManagerScript
     - DiceScript
     - DivinationTokenManagerScript
+    - DivinationTokenScript
+    - HelpCardManager
+    - LeaderBoardScript
+    - LoadingSceneScript
     - MainMenuScript
     - PhaseTitleScript
     - PlayerScript
@@ -95,6 +99,12 @@ ScriptsOnlyBuild:
     fullTypeName: MainMenuScript
     methodName: PlayButtonClicked
   - assembly: Assembly-CSharp
+    fullTypeName: MainMenuScript
+    methodName: QuitButtonClicked
+  - assembly: Assembly-CSharp
+    fullTypeName: MainMenuScript
+    methodName: PlayButtonClicked
+  - assembly: Assembly-CSharp
     fullTypeName: SectorSalesButtonScript
     methodName: MinusButtonClicked
   - assembly: Assembly-CSharp
@@ -123,13 +133,22 @@ ScriptsOnlyBuild:
     methodName: ButtonClicked
   - assembly: Assembly-CSharp
     fullTypeName: MainMenuScript
+    methodName: PlayButtonClicked
+  - assembly: Assembly-CSharp
+    fullTypeName: MainMenuScript
     methodName: InGameQuitButtonClicked
+  - assembly: Assembly-CSharp
+    fullTypeName: HelpCardManager
+    methodName: yesButtonClicked
   - assembly: Assembly-CSharp
     fullTypeName: SectorSalesButtonScript
     methodName: SellButtonClicked
   - assembly: Assembly-CSharp
     fullTypeName: ActionCardButtonScript
     methodName: SaveButtonClicked
+  - assembly: Assembly-CSharp
+    fullTypeName: MainMenuScript
+    methodName: MusicButton
   - assembly: UnityEngine.CoreModule
     fullTypeName: UnityEngine.GameObject
     methodName: SetActive
@@ -140,11 +159,35 @@ ScriptsOnlyBuild:
     fullTypeName: RumorCardButtonScript
     methodName: SelesaiButtonClicked
   - assembly: Assembly-CSharp
+    fullTypeName: HelpCardManager
+    methodName: noButtonClicked
+  - assembly: Assembly-CSharp
     fullTypeName: ActionCardButtonScript
     methodName: ActivateButtonClicked
   - assembly: Assembly-CSharp
+    fullTypeName: MainMenuScript
+    methodName: SFXButton
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.GameObject
+    methodName: SetActive
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.GameObject
+    methodName: SetActive
+  - assembly: Assembly-CSharp
+    fullTypeName: MainMenuScript
+    methodName: InGameQuitButtonClicked
+  - assembly: Assembly-CSharp
     fullTypeName: SectorSalesButtonScript
     methodName: SkipButtonClicked
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.GameObject
+    methodName: SetActive
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.GameObject
+    methodName: SetActive
+  - assembly: Assembly-CSharp
+    fullTypeName: MainMenuScript
+    methodName: PlayButtonClicked
   - assembly: UnityEngine.CoreModule
     fullTypeName: UnityEngine.GameObject
     methodName: SetActive
@@ -192,66 +235,131 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1600}
+      Script: {instanceID: 1602}
     - Class: 114
-      Script: {instanceID: 2030}
+      Script: {instanceID: 2032}
     - Class: 114
-      Script: {instanceID: 2600}
+      Script: {instanceID: 2046}
     - Class: 114
-      Script: {instanceID: 2708}
+      Script: {instanceID: 2604}
     - Class: 114
-      Script: {instanceID: 2806}
+      Script: {instanceID: 2712}
     - Class: 114
-      Script: {instanceID: 2948}
+      Script: {instanceID: 2740}
     - Class: 114
-      Script: {instanceID: 3096}
+      Script: {instanceID: 2812}
     - Class: 114
-      Script: {instanceID: 3286}
+      Script: {instanceID: 2954}
     - Class: 114
-      Script: {instanceID: 3356}
+      Script: {instanceID: 3102}
     - Class: 114
-      Script: {instanceID: 4228}
+      Script: {instanceID: 3292}
     - Class: 114
-      Script: {instanceID: 4380}
+      Script: {instanceID: 3362}
     - Class: 114
-      Script: {instanceID: 4482}
+      Script: {instanceID: 4234}
     - Class: 114
-      Script: {instanceID: 4530}
+      Script: {instanceID: 4386}
     - Class: 114
-      Script: {instanceID: 4838}
+      Script: {instanceID: 4488}
     - Class: 114
-      Script: {instanceID: 5030}
+      Script: {instanceID: 4536}
     - Class: 114
-      Script: {instanceID: 5582}
+      Script: {instanceID: 4844}
     - Class: 114
-      Script: {instanceID: 5714}
+      Script: {instanceID: 5036}
     - Class: 114
-      Script: {instanceID: 5736}
+      Script: {instanceID: 5588}
     - Class: 114
-      Script: {instanceID: 5796}
+      Script: {instanceID: 5722}
     - Class: 114
-      Script: {instanceID: 6054}
+      Script: {instanceID: 5744}
     - Class: 114
-      Script: {instanceID: 6594}
+      Script: {instanceID: 5804}
     - Class: 114
-      Script: {instanceID: 6612}
+      Script: {instanceID: 6062}
     - Class: 114
-      Script: {instanceID: 6696}
+      Script: {instanceID: 6606}
     - Class: 114
-      Script: {instanceID: 7006}
+      Script: {instanceID: 6624}
     - Class: 114
-      Script: {instanceID: 7088}
+      Script: {instanceID: 6708}
     - Class: 114
-      Script: {instanceID: 7196}
+      Script: {instanceID: 7020}
     - Class: 114
-      Script: {instanceID: 7382}
+      Script: {instanceID: 7102}
     - Class: 114
-      Script: {instanceID: 7736}
+      Script: {instanceID: 7210}
+    - Class: 114
+      Script: {instanceID: 7368}
+    - Class: 114
+      Script: {instanceID: 7398}
+    - Class: 114
+      Script: {instanceID: 7752}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
       Script: {instanceID: 0}
     - Class: 134
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/Menu/Loading Screen.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1602}
+    - Class: 114
+      Script: {instanceID: 2604}
+    - Class: 114
+      Script: {instanceID: 2812}
+    - Class: 114
+      Script: {instanceID: 3102}
+    - Class: 114
+      Script: {instanceID: 4844}
+    - Class: 114
+      Script: {instanceID: 4966}
+    - Class: 114
+      Script: {instanceID: 5036}
+    - Class: 114
+      Script: {instanceID: 5588}
+    - Class: 114
+      Script: {instanceID: 5744}
+    - Class: 114
+      Script: {instanceID: 6062}
+    - Class: 114
+      Script: {instanceID: 7412}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -289,31 +397,31 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1600}
+      Script: {instanceID: 1602}
     - Class: 114
-      Script: {instanceID: 2182}
+      Script: {instanceID: 2186}
     - Class: 114
-      Script: {instanceID: 2600}
+      Script: {instanceID: 2604}
     - Class: 114
-      Script: {instanceID: 2806}
+      Script: {instanceID: 2812}
     - Class: 114
-      Script: {instanceID: 3096}
+      Script: {instanceID: 3102}
     - Class: 114
-      Script: {instanceID: 4070}
+      Script: {instanceID: 4076}
     - Class: 114
-      Script: {instanceID: 4326}
+      Script: {instanceID: 4332}
     - Class: 114
-      Script: {instanceID: 4838}
+      Script: {instanceID: 4844}
     - Class: 114
-      Script: {instanceID: 4960}
+      Script: {instanceID: 4966}
     - Class: 114
-      Script: {instanceID: 5030}
+      Script: {instanceID: 5036}
     - Class: 114
-      Script: {instanceID: 5582}
+      Script: {instanceID: 5588}
     - Class: 114
-      Script: {instanceID: 5736}
+      Script: {instanceID: 5744}
     - Class: 114
-      Script: {instanceID: 6054}
+      Script: {instanceID: 6062}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -391,6 +499,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: ActionCardButtonScript
+  - hash:
+      serializedVersion: 2
+      Hash: abd55e9b8cfb629f88abcbf3ff4a988e
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: DivinationTokenScript
   - hash:
       serializedVersion: 2
       Hash: b12640dfdb5966813e9dd838893e6c4a
@@ -481,6 +595,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: SectorSalesButtonScript
+  - hash:
+      serializedVersion: 2
+      Hash: a2868b2570236c5f701b385a95049d22
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: LeaderBoardScript
   - hash:
       serializedVersion: 2
       Hash: fce9b835d1e8b08e7ecea8da19f21986
@@ -861,7 +981,7 @@ ScriptsOnlyBuild:
     className: AnimationPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: 5634f7f51da65832c53069418c6ec1bc
+      Hash: 0da7bbd1d71b66585671deb402bbf644
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: MainMenuScript
@@ -1047,6 +1167,12 @@ ScriptsOnlyBuild:
     className: BeforeAfterTestCommandState
   - hash:
       serializedVersion: 2
+      Hash: a6b5891d1abab19a8be82ad93a479671
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: HelpCardButton
+  - hash:
+      serializedVersion: 2
       Hash: 8bbce9932f67ad8e7f4eefec87800f94
     assemblyName: Unity.TextMeshPro
     namespaceName: TMPro
@@ -1107,7 +1233,7 @@ ScriptsOnlyBuild:
     className: BasicPlayableBehaviour
   - hash:
       serializedVersion: 2
-      Hash: 6e3b94d2779175104fded16048550b2d
+      Hash: bb150a1d90cba57421303102401e9297
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: Dice2Script
@@ -1119,7 +1245,7 @@ ScriptsOnlyBuild:
     className: Physics2DRaycaster
   - hash:
       serializedVersion: 2
-      Hash: cbd039d70547019ef49e93dac39195eb
+      Hash: fba6fb01ae5710ef22e157bb931a026d
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: PlayerScript
@@ -1245,19 +1371,25 @@ ScriptsOnlyBuild:
     className: UnityOnMouseOverMessageListener
   - hash:
       serializedVersion: 2
+      Hash: 652a702157766539f2c52a356998bcff
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: HelpCardManager
+  - hash:
+      serializedVersion: 2
       Hash: 2c583ad0ac85d03e8700dd05fdcb46cb
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: Variables
   - hash:
       serializedVersion: 2
-      Hash: 2dae58b37034b1e831dfdf3d7d27a528
+      Hash: 8dd50fafcd7f203cbca35a0d4042ca31
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: SemesterStateManager
   - hash:
       serializedVersion: 2
-      Hash: 8a839c3a4759c9de00a6b74d31bae28f
+      Hash: 6efb4e0a6cfb3296047a617e17497507
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: LoadingSceneScript
@@ -1293,7 +1425,7 @@ ScriptsOnlyBuild:
     className: UnityOnToggleValueChangedMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 191ac7290e417a5464abc0b9ead241f3
+      Hash: cb72cf4980e48e1c01b6e4aaf639a322
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: Dice1Script
@@ -1324,5 +1456,7 @@ ScriptsOnlyBuild:
   platform: 19
   scenePathNames:
   - Assets/Scenes/Menu/Main Menu.unity
+  - Assets/Scenes/Menu/Loading Screen.unity
   - Assets/Scenes/Gameplay/Stock Rising PvsCoP.unity
-  playerPath: D:/POLTEK Batam/Tugas PBL/Semester 5/Workspace/#build/Stock Rising.exe
+  playerPath: D:/POLTEK Batam/Tugas PBL/Semester 5/Workspace/#build/Stock Rising/Stock
+    Rising.exe
